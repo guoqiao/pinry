@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+import os
 from django import forms
+from django.conf import settings
 
 from .models import Pin,Album
 
@@ -7,6 +10,12 @@ class AlbumForm(forms.ModelForm):
 
     class Meta:
         model = Album
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if name in os.listdir(settings.PINS_ROOT):
+            raise forms.ValidationError(u"相册已存在")
+        return name
 
 class PinForm(forms.ModelForm):
     #url = forms.CharField(label='URL')
