@@ -59,7 +59,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
-    'pinry.vendor',
+    #'pinry.vendor',
     'pinry.core',
     'pinry.pins',
     'pinry.api',
