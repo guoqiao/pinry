@@ -1,11 +1,12 @@
 import os
+import sys
 from django.contrib.messages import constants as messages
+SITE_ROOT = os.path.join(os.path.realpath(os.path.dirname(__file__)), '../')
+APPS_ROOT = os.path.join(SITE_ROOT, 'apps')
+sys.path.insert(0, SITE_ROOT)
+sys.path.insert(0, APPS_ROOT)
 
-
-SITE_ROOT = os.path.join(os.path.realpath(os.path.dirname(__file__)), '../../')
-
-
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'Asia/Shanghai'
 LANGUAGE_CODE = 'en-us'
 USE_I18N = True
 USE_L10N = True
@@ -25,6 +26,9 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
+TEMPLATE_DIRS = (
+    os.path.join(SITE_ROOT,'templates'),
+)
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -40,8 +44,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
 )
 
-ROOT_URLCONF = 'pinry.urls'
-WSGI_APPLICATION = 'pinry.wsgi.application'
+ROOT_URLCONF = 'urls'
+WSGI_APPLICATION = 'wsgi.application'
 LOGIN_REDIRECT_URL = '/'
 INTERNAL_IPS = ['127.0.0.1']
 MESSAGE_TAGS = {
@@ -60,7 +64,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     #'pinry.vendor',
-    'pinry.core',
-    'pinry.pins',
-    'pinry.api',
+    'core',
+    'pins',
+    'api',
 )
