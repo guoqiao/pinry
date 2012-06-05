@@ -1,7 +1,7 @@
 from tastypie.resources import ModelResource
 from tastypie import fields
 
-from pinry.pins.models import Pin
+from pins.models import Pin
 
 
 class PinResource(ModelResource):  # pylint: disable-msg=R0904

@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.template import Library
 
-from pinry.pins.forms import PinForm
+from pins.forms import PinForm
 
 
 register = Library()
