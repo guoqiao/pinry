@@ -1,5 +1,6 @@
 # virtualenv
 *.swp
+*.swn
 ENV/
 /bin/
 /lib/

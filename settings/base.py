@@ -5,7 +5,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.join(HERE, '../')
 APPS_ROOT = os.path.join(PROJECT_ROOT, 'apps')
 
-SITE_URL = "http://iot-oa.insigma.com.cn"
+#SITE_URL = "http://iot-oa.insigma.com.cn"
 
 sys.path.insert(0, PROJECT_ROOT)
 sys.path.insert(0, APPS_ROOT)
@@ -146,7 +146,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
