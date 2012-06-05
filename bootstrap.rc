@@ -1,0 +1,12 @@
+# Absolute path to this script. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "${PWD}/${BASH_SOURCE}")
+
+TOP_PATH=`dirname "$SCRIPT"`
+
+export mg="$TOP_PATH/ENV/bin/python $TOP_PATH/manage.py"
+
+source "$TOP_PATH/ENV/bin/activate"
+
+function _virtualenv_task {
+    virtualenv --system-site-packages "$TOP_PATH/ENV"
+}
