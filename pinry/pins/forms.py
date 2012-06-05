@@ -1,10 +1,15 @@
 from django import forms
 
-from .models import Pin
+from .models import Pin,Album
 
+
+class AlbumForm(forms.ModelForm):
+
+    class Meta:
+        model = Album
 
 class PinForm(forms.ModelForm):
-    url = forms.CharField(label='URL')
+    #url = forms.CharField(label='URL')
 
     def clean_url(self):
         data = self.cleaned_data['url']
@@ -39,4 +44,4 @@ class PinForm(forms.ModelForm):
 
     class Meta:
         model = Pin
-        exclude = ['image']
+        #exclude = ['image']

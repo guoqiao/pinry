@@ -8,7 +8,7 @@ from django.contrib import messages
 
 
 def home(request):
-    return HttpResponseRedirect(reverse('pins:recent-pins'))
+    return HttpResponseRedirect(reverse('pins:recent-albums'))
 
 
 def register(request):

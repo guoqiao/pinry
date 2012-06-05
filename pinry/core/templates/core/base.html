@@ -1,4 +1,4 @@
-{% load new_pin %}
+{% load new_album %}
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@
 
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
-                        <li><a href="#new-pin" data-toggle="modal">New Pin</a></li>
+                        <li><a href="#new-album" data-toggle="modal">New Album</a></li>
                         <li><a href="{% url core:logout %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url core:login %}">Login</a></li>
@@ -44,7 +44,7 @@
 
         {% block yield %}{% endblock %}
 
-        {% new_pin %}
+        {% new_album %}
 
         {% if debug %}
             <script src="/static/vendor/jquery/1.7.2/jquery.js"></script>
