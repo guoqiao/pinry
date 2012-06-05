@@ -1,5 +1,0 @@
-Django==1.4
-South
-PIL
-django-tastypie
-git+git://github.com/vannoppen/django-thumbs.git@v1.0.0#egg=django-thumbs
