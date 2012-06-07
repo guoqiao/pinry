@@ -40,11 +40,19 @@ var data = [
     }
 ];
 
-var loadTree = function () {
+var onLoadTree = function (data) {
+    console.log(data)
     $('#tree').tree({
         data: data,
         autoOpen: true,
         dragAndDrop: true
+    });
+};
+
+var loadTree = function () {
+    $.ajax({
+        url:"/pins/ajax_album_tree",
+        success: onLoadTree
     });
 };
 
