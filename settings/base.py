@@ -105,7 +105,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -201,3 +201,4 @@ DEFAULT_FROM_EMAIL='spig@insigma.com.cn'
 #import djcelery
 #djcelery.setup_loader()
 #BROKER_URL = "django://"
+ALBUM_ROOT = os.path.join(MEDIA_ROOT,'albums')
