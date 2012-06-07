@@ -1,7 +1,7 @@
 from tastypie.resources import ModelResource
 from tastypie import fields
 
-from pins.models import Pin
+from pins.models import Pin,Album
 
 
 class PinResource(ModelResource):  # pylint: disable-msg=R0904
@@ -15,3 +15,9 @@ class PinResource(ModelResource):  # pylint: disable-msg=R0904
     def dehydrate_thumbnail(self, bundle):
         pin = Pin.objects.only('image').get(pk=bundle.data['id'])
         return pin.image.url_200x1000
+
+class AlbumResource(ModelResource):
+    class Meta:
+        queryset = Album.objects.all()
+        resource_name = 'album'
+        include_resource_uri = False
