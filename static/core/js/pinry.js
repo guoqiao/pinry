@@ -2,7 +2,7 @@
  * Based on Wookmark's endless scroll.
  */
 $(window).ready(function () {
-    var apiURL = '/api/v1/pin/?format=json&offset='
+    var apiURL = '/api/v1/pin/?album='+album_id+'&format=json&offset='
     var page = 0;
     var handler = null;
     var isLoading = false;

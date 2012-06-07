@@ -12,3 +12,10 @@
         </div>
     </div>
 {% endblock %}
+
+{% block js2 %}
+<script type="text/javascript">
+    var album_id = {{id}};
+</script>
+<script src="/static/core/js/pinry.js"></script>
+{% endblock %}
