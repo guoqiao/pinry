@@ -1,6 +1,11 @@
 {% extends 'core/base.html' %}
+{% load new-pin %}
 
 {% block title %}Recent Pins{% endblock %}
+
+{% block nav %}
+<li><a href="#new-pin" data-toggle="modal">New Pin</a></li>
+{% endblock %}
 
 {% block yield %}
     <div id="pins"></div>
@@ -11,9 +16,11 @@
             </div>
         </div>
     </div>
+
+    {% new-pin id %}
 {% endblock %}
 
-{% block js2 %}
+{% block js %}
 <script type="text/javascript">
     var album_id = {{id}};
 </script>

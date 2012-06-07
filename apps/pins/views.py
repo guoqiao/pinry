@@ -32,11 +32,14 @@ def new_album(request):
     }
     return TemplateResponse(request, 'pins/new_album.html', context)
 
-def new_pin(request):
+def new_pin(request,id):
     if request.method == 'POST':
         form = PinForm(request.POST)
         if form.is_valid():
-            form.save()
+            pin = form.save(commit=False)
+            album = Album.objects.get(id=id)
+            pin.album = album
+            pin.save()
             messages.success(request, 'New pin successfully added.')
             return HttpResponseRedirect(reverse('pins:recent-pins'))
         else:

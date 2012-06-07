@@ -27,6 +27,7 @@
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
                         <li><a href="#new-album" data-toggle="modal">New Album</a></li>
+                        {% block nav %}{% endblock %}
                         <li><a href="{% url core:logout %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url core:login %}">Login</a></li>
@@ -65,6 +66,6 @@
         <script src="/static/tree.jquery.js"></script>
         <script src="/static/core/js/albums.js"></script>
         <script src="/static/core/js/messages.js"></script>
-        {% block js2 %}{% endblock %}
+        {% block js %}{% endblock %}
     </body>
 </html>

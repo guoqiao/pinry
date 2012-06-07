@@ -8,6 +8,6 @@ register = Library()
 
 
 @register.simple_tag
-def new_pin():
+def new_pin(id):
     return render_to_string('pins/templatetags/new_pin.html',
-        {'form': PinForm()})
+                            {'form': PinForm(), 'id':id})

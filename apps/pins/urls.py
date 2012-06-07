@@ -5,5 +5,4 @@ urlpatterns = patterns('pins.views',
     url(r'^new-album/$', 'new_album', name='new-album'),# create new album
     url(r'^(\d+)/$', 'recent_pins', name='recent-pins'),
     url(r'^(\d+)/new-pin/$', 'new_pin', name='new-pin'),# add a new pin to current album
-    #url(r'^ajax_album_tree/$', 'ajax_album_tree', name='ajax-album-tree'),
 )
