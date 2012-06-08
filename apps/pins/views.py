@@ -11,7 +11,8 @@ def recent_albums(request):
     return TemplateResponse(request, 'pins/recent_albums.html', None)
 
 def recent_pins(request, id):
-    return TemplateResponse(request, 'pins/recent_pins.html', {'id':id})
+    album = Album.objects.get(pk=id)
+    return TemplateResponse(request, 'pins/recent_pins.html', {'album':album})
 
 def new_album(request):
     if request.method == 'POST':

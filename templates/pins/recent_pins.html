@@ -7,6 +7,11 @@
 <li><a href="#new-pin" data-toggle="modal">上传照片</a></li>
 {% endblock %}
 
+
+{% block album %}
+{{album.name}}
+{% endblock %}
+
 {% block yield %}
     <div id="pins"></div>
     <div id="loader" class="container">
@@ -17,12 +22,12 @@
         </div>
     </div>
 
-    {% new_pin id %}
+    {% new_pin album.id %}
 {% endblock %}
 
 {% block js %}
 <script type="text/javascript">
-    var album_id = {{id}};
+    var album_id = {{album.id}};
 </script>
 <script src="/static/core/js/pinry.js"></script>
 {% endblock %}

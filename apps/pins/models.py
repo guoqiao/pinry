@@ -1,19 +1,15 @@
 import os
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
-from django.core.files import File
-from django.core.files.temp import NamedTemporaryFile
-
 from thumbs import ImageWithThumbsField
-
-import urllib2
-
 
 class Album(models.Model):
     name = models.CharField(max_length=255, unique=True)
     create = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
+
+    class Meta:
+        ordering = ['-create']
 
     def __unicode__(self):
         return self.name

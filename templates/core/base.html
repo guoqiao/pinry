@@ -22,7 +22,8 @@
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <a href="{% url core:home %}" class="brand">Pinry</a>
+                <a href="{% url core:home %}" class="brand">HOME</a>
+                <a href="#" class="brand">{% block album %}{% endblock %}</a>
 
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
