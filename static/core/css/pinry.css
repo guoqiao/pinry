@@ -58,6 +58,13 @@ body {
     text-align: center;
 }
 
+#albums {
+    top: 70px;
+    position: absolute;
+    background: #eee;
+    z-index: 100;
+}
+
 #pins {
     top: 70px;
     position: absolute;

@@ -14,7 +14,7 @@ ENV/
 # django
 *.db
 /media/
-/static/
+#/static/
 
 # python
 *.pyc
