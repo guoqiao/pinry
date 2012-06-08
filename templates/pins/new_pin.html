@@ -9,14 +9,14 @@
         <div class="row">
             <div class="span6 offset3" id="form">
                 <h1>New Pin</h1>
-                <form action="{% url pins:new-pin id %}" method="post" class="form-horizontal">
+                <form enctype="multipart/form-data" eaction="{% url pins:new-pin id %}" method="post" class="form-horizontal">
                     {% csrf_token %}
                     {% for field in form %}
                         {% bootstrap_field field %}
                     {% endfor %}
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">Post</button>
-                        <a href="{% url pins:new-pin id %}" class="btn">Cancel</a>
+                        <a href="{% url pins:recent-pins id %}" class="btn">Cancel</a>
                     </div>
                 </form>
             </div>

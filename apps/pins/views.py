@@ -33,16 +33,16 @@ def new_album(request):
     return TemplateResponse(request, 'pins/new_album.html', context)
 
 def new_pin(request,id):
+    print 'new_pin id',id
     album = Album.objects.get(id=id)
     if request.method == 'POST':
-        print 'vvvvvvvvvvvvvvvvvvvvvv'
-        form = PinForm(request.POST)
+        form = PinForm(request.POST, request.FILES)
         if form.is_valid():
             pin = form.save(commit=False)
             pin.album = album
             pin.save()
             messages.success(request, 'New pin successfully added.')
-            return HttpResponseRedirect(reverse('pins:recent-pins', args={'id':id}))
+            return HttpResponseRedirect(reverse('pins:recent-pins', args=[id]))
         else:
             messages.error(request, 'Pin did not pass validation!')
     else:
@@ -51,5 +51,5 @@ def new_pin(request,id):
         'form': form,
         'id': id,
     }
-    return TemplateResponse(request, 'pins/templatetags/new_pin.html', context)
+    return TemplateResponse(request, 'pins/new_pin.html', context)
 
