@@ -19,7 +19,7 @@ class Album(models.Model):
         return self.name
 
     def path(self):
-        return os.path.join(settings.ALBUM_ROOT, str(self.id))
+        return os.path.join('albums', str(self.id))
 
     def save(self, *args, **kwargs):
         super(Album,self).save()
