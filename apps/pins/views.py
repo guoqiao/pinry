@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.template.response import TemplateResponse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -21,7 +22,7 @@ def new_album(request):
             a = form.save(commit=False)
             a.user = request.user
             a.save()
-            messages.success(request, 'New album successfully added.')
+            messages.success(request, '新建相册成功')
             url = reverse('pins:recent-pins', args=[a.id])
             return HttpResponseRedirect(url)
         else:
@@ -42,7 +43,7 @@ def new_pin(request,id):
             pin = form.save(commit=False)
             pin.album = album
             pin.save()
-            messages.success(request, 'New pin successfully added.')
+            messages.success(request, '上传照片成功')
             return HttpResponseRedirect(reverse('pins:recent-pins', args=[id]))
         else:
             messages.error(request, 'Pin did not pass validation!')
