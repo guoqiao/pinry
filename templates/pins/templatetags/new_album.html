@@ -2,7 +2,7 @@
 
 <div class="modal fade" id="new-album">
     <div class="modal-header">
-        <h3>New Album</h3>
+        <h3>新建相册</h3>
     </div>
     <form action="{% url pins:new-album %}" method="post" class="form-horizontal">
         <div class="modal-body">
@@ -12,8 +12,8 @@
             {% endfor %}
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Post</button>
-            <a href="#new-album" data-toggle="modal" class="btn">Cancel</a>
+            <button type="submit" class="btn btn-primary">提交</button>
+            <a href="#new-album" data-toggle="modal" class="btn">取消</a>
         </div>
     </form>
 </div>

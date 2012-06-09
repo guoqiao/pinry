@@ -3,21 +3,21 @@
 {% load bootstrap_field %}
 
 
-{% block title %}New Album{% endblock %}
+{% block title %}新建相册{% endblock %}
 
 {% block yield %}
     <div class="container">
         <div class="row">
             <div class="span6 offset3" id="form">
-                <h1>New Album</h1>
+                <h1>新建相册</h1>
                 <form action="{% url pins:new-album %}" method="post" class="form-horizontal">
                     {% csrf_token %}
                     {% for field in form %}
                         {% bootstrap_field field %}
                     {% endfor %}
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Post</button>
-                        <a href="{% url core:home %}" class="btn">Cancel</a>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <a href="{% url core:home %}" class="btn">取消</a>
                     </div>
                 </form>
             </div>
