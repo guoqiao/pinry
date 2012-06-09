@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 import os
 from django.db import models
 from django.contrib.auth.models import User
 from thumbs import ImageWithThumbsField
 
 class Album(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(u'名称', max_length=255, unique=True)
     create = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
 
