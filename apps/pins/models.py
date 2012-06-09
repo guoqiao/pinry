@@ -28,7 +28,7 @@ def pin_path(instance,filename):
 
 class Pin(models.Model):
     album = models.ForeignKey(Album)
-    image = ImageWithThumbsField(verbose_name='照片',upload_to=pin_path, sizes=((200, 1000),))
+    image = ImageWithThumbsField('照片',upload_to=pin_path, sizes=((200, 1000),))
     description = models.TextField('描述',blank=True, null=True)
 
     def __unicode__(self):
