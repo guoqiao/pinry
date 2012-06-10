@@ -15,6 +15,10 @@ class Album(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('recent-pins', [self.id])
+
     def path(self):
         return os.path.join('albums', str(self.id))
 
