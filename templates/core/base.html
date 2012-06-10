@@ -1,8 +1,8 @@
 {% load new_album %}
-
 <!DOCTYPE html>
 <html>
     <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <title>Pinry - {% block title %}{% endblock %}</title>
 
         {% if debug %}
@@ -12,10 +12,17 @@
             <link rel="stylesheet" href="/static/vendor/bootstrap/2.0.3/css/bootstrap.min.css">
             <link rel="stylesheet" href="/static/vendor/fancybox/2.0.6/jquery.fancybox.css">
         {% endif %}
+        <link rel="stylesheet" href="/static/core/css/pinry.css">
+		<!-- Generic page styles -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/style.css">
+		<!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/bootstrap-responsive.min.css">
+		<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/bootstrap-image-gallery.min.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/jquery.fileupload-ui.css">
 
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Monoton">
 
-        <link rel="stylesheet" href="/static/core/css/pinry.css">
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -25,13 +32,13 @@
 
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
-                        <li><a href="#new-album" data-toggle="modal">新建相册</a></li>
+                        <li><a href="#new-album" data-toggle="modal">New Album</a></li>
                         {% block nav %}{% endblock %}
                         <li><a href="{% url core:logout %}">{{user}}</a></li>
-                        <li><a href="{% url core:logout %}">退出</a></li>
+                        <li><a href="{% url core:logout %}">Logout</a></li>
                     {% else %}
-                        <li><a href="{% url core:login %}">登录</a></li>
-                        <li><a href="{% url core:register %}">注册</a></li>
+                        <li><a href="{% url core:login %}">Login</a></li>
+                        <li><a href="{% url core:register %}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -46,7 +53,6 @@
         {% endif %}
 
         {% block yield %}{% endblock %}
-
         {% new_album %}
 
         {% if debug %}
@@ -65,6 +71,18 @@
 
         <script src="/static/core/js/albums.js"></script>
         <script src="/static/core/js/messages.js"></script>
+		
+		<script src="{{ STATIC_URL }}fileupload/js/jquery.ui.widget.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/tmpl.min.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/load-image.min.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/canvas-to-blob.min.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/bootstrap-image-gallery.min.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/jquery.iframe-transport.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/jquery.fileupload.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/jquery.fileupload-fp.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/jquery.fileupload-ui.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/locale.js"></script>
+		<script src="{{ STATIC_URL }}fileupload/js/main.js"></script>
         {% block js %}{% endblock %}
     </body>
 </html>
