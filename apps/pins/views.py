@@ -20,11 +20,6 @@ def response_mimetype(request):
 class PinCreateView(CreateView):
     model = Pin
 
-    def get_context_data(self, **kwargs):
-        context = super(PinCreateView, self).get_context_data(**kwargs)
-        context['pk'] = self.kwargs['pk']
-        return context
-
     def form_valid(self, form):
         self.object = form.save()
         f = self.request.FILES.get('image')
