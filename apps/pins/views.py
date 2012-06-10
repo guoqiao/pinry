@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from django.template.response import TemplateResponse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -26,7 +27,7 @@ class PinCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(PinCreateView, self).get_context_data(**kwargs)
-        context['id'] = self.album.id
+        context['id'] = self.kwargs['id']
         return context
 
     def form_valid(self, form):
