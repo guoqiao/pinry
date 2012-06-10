@@ -63,8 +63,8 @@ class JSONResponse(HttpResponse):
 def recent_albums(request):
     return TemplateResponse(request, 'pins/recent_albums.html', None)
 
-def recent_pins(request, id):
-    album = Album.objects.get(pk=id)
+def recent_pins(request, pk):
+    album = Album.objects.get(pk=pk)
     return TemplateResponse(request, 'pins/recent_pins.html', {'album':album})
 
 def new_album(request):
@@ -86,8 +86,8 @@ def new_album(request):
     }
     return TemplateResponse(request, 'pins/new_album.html', context)
 
-def new_pin(request,id):
-    album = Album.objects.get(id=id)
+def new_pin(request,pk):
+    album = Album.objects.get(pk=pk)
     if request.method == 'POST':
         form = PinForm(request.POST, request.FILES)
         if form.is_valid():
@@ -95,14 +95,14 @@ def new_pin(request,id):
             pin.album = album
             pin.save()
             messages.success(request, '上传照片成功')
-            return HttpResponseRedirect(reverse('pins:recent-pins', args=[id]))
+            return HttpResponseRedirect(reverse('pins:recent-pins', args=[pk]))
         else:
             messages.error(request, 'Pin did not pass validation!')
     else:
         form = PinForm(initial={'album':album})
     context = {
         'form': form,
-        'id': id,
+        'pk': pk,
     }
     return TemplateResponse(request, 'pins/new_pin.html', context)
 

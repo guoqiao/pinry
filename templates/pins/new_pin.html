@@ -9,7 +9,7 @@
         <div class="row">
             <div class="span6 offset3" id="form">
                 <h1>New Pin</h1>
-                <form enctype="multipart/form-data" action="{% url pins:new-pin id %}" method="post" class="form-horizontal">
+                <form enctype="multipart/form-data" action="{% url pins:new-pin pk %}" method="post" class="form-horizontal">
                     {% csrf_token %}
                     {% for field in form %}
                         {% bootstrap_field field %}
