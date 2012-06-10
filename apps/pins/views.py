@@ -7,7 +7,6 @@ from django.contrib import messages
 from django.views.generic import CreateView, DeleteView
 from django.utils import simplejson
 from django.conf import settings
-from django.shortcuts import get_object_or_404
 
 from .models import Album,Pin
 from .forms import PinForm,AlbumForm
@@ -21,13 +20,9 @@ def response_mimetype(request):
 class PinCreateView(CreateView):
     model = Pin
 
-    def dispatch(self, *args, **kwargs):
-        self.album = get_object_or_404(Album, id=kwargs['id'])
-        return super(PinCreateView, self).dispatch(*args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super(PinCreateView, self).get_context_data(**kwargs)
-        context['id'] = self.kwargs['id']
+        context['id'] = self.kwargs['pk']
         return context
 
     def form_valid(self, form):
