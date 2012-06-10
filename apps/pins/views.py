@@ -22,16 +22,16 @@ class PinCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(PinCreateView, self).get_context_data(**kwargs)
-        context['id'] = self.kwargs['pk']
+        context['pk'] = self.kwargs['pk']
         return context
 
     def form_valid(self, form):
         self.object = form.save()
-        f = self.request.FILES.get('file')
+        f = self.request.FILES.get('image')
         data = [{
             'name': f.name, 
             'url': self.object.url(),
-            'thumbnail_url': os.path.join(settings.MEDIA_URL, self.image.name),#TODO
+            'thumbnail_url': self.object.image.url(),
             'delete_url': reverse('delete', args=[self.object.id]), 
             'delete_type': "DELETE",
         }]
