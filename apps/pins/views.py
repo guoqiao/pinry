@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView
 from django.utils import simplejson
+from django.shortcuts import render
 from django.conf import settings
 
 from .models import Album,Pin
@@ -16,6 +17,37 @@ def response_mimetype(request):
         return "application/json"
     else:
         return "text/plain"
+
+def create_pin(request, pk):
+    album = Album.objects.get(pk=pk)
+    pin = Pin(album=album)
+    if request.method == 'GET':
+        form = PinForm(instance=pin)
+    else:
+        form = PinForm(request.POST, request.FILES, instance=pin)
+        print form
+        if form.is_valid():
+            pin = form.save()
+            data = [{
+                'name': pin.file.name,
+                'url': pin.file.url,
+                'thumbnail_url': pin.file.url_200x1000,
+                'delete_url': reverse('pins:delete-pin', args=[pin.pk]),
+                'delete_type': "DELETE",
+                }]
+        response = JSONResponse(data, {}, response_mimetype(request))
+        response['Content-Disposition'] = 'inline; filename=files.json'
+        return response
+
+    context = {'form': form}
+    template = 'pins/pin_form.html'
+    return render(request, template, context)
+
+def delete_pin(request,pk):
+    Pin.object.get(pk=pk).delete()
+    response = JSONResponse(True, {}, response_mimetype(request))
+    response['Content-Disposition'] = 'inline; filename=files.json'
+    return response
 
 class PinCreateView(CreateView):
     model = Pin
