@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-import os
 from django.template.response import TemplateResponse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView
 from django.utils import simplejson
-from django.shortcuts import render
-from django.conf import settings
+from django.shortcuts import render,redirect
 
 from .models import Album,Pin
 from .forms import PinForm,AlbumForm
@@ -44,10 +42,15 @@ def create_pin(request, pk):
     return render(request, template, context)
 
 def delete_pin(request,pk):
-    Pin.object.get(pk=pk).delete()
+    Pin.objects.get(pk=pk).delete()
     response = JSONResponse(True, {}, response_mimetype(request))
     response['Content-Disposition'] = 'inline; filename=files.json'
     return response
+
+def delete_album(request,pk):
+    Album.objects.get(pk=pk).delete()
+    url = reverse('pins:recent-albums')
+    return redirect(url)
 
 class PinCreateView(CreateView):
     model = Pin
