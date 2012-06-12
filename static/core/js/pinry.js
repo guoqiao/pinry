@@ -56,14 +56,15 @@ $(window).ready(function () {
         page++;
         
         var html = '';
-        var i=0, length=data.length, image;
+        var i=0, length=data.length, pin;
         for(; i<length; i++) {
-          image = data[i];
+          pin = data[i];
+          console.log(pin);
           html += '<div class="pin">';
-              html += '<a class="fancybox" rel="pins" href="'+image.image+'">';
-                  html += '<img src="'+image.thumbnail+'" width="200" >';
+              html += '<a class="fancybox" rel="pins" href="'+pin.file+'">';
+                  html += '<img src="'+pin.thumbnail+'" width="200" >';
               html += '</a>';
-              html += '<p>'+image.description+'</p>';
+              html += '<p>'+pin.description+'</p>';
           html += '</div>';
         }
         
