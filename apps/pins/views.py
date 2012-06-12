@@ -16,7 +16,7 @@ def response_mimetype(request):
     else:
         return "text/plain"
 
-def create_pin(request, pk):
+def upload_pin(request, pk):
     album = Album.objects.get(pk=pk)
     pin = Pin(album=album)
     if request.method == 'GET':

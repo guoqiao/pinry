@@ -1,11 +1,10 @@
 {% extends 'core/base.html' %}
-{% load new_pin %}
 
 {% block title %}Recent Pins{% endblock %}
 
 {% block nav %}
 <li><a data-toggle="modal" href="#id_delete_album" >删除相册</a></li>
-<li><a href="/pins/{{album.id}}/upload" data-toggle="modal">批量上传</a></li>
+<li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal">批量上传</a></li>
 {% endblock %}
 
 {% block album %}
@@ -21,8 +20,6 @@
         </div>
     </div>
 </div>
-
-{% new_pin album.id %}
 
 <div class="modal hide fade" id="id_delete_album">
     <div class="modal-header">
