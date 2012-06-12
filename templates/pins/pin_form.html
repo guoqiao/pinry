@@ -8,28 +8,25 @@
 
 {% block yield %}
 <div class="container">
-<div class="page-header">
-    <h1>上传照片</h1>
-</div>
 <form id="fileupload" method="post" action="." enctype="multipart/form-data">{% csrf_token %}
     <div class="row fileupload-buttonbar">
         <div class="span7">
             <span class="btn btn-primary fileinput-button">
                 <i class="icon-plus icon-white"></i>
-                <span>添加...</span>
+                <span>添加照片...</span>
                 <input type="file" name="file" multiple>
             </span>
             <button type="submit" class="btn btn-success start">
                 <i class="icon-upload icon-white"></i>
-                <span>上传</span>
+                <span>批量上传</span>
             </button>
             <button type="reset" class="btn btn-warning cancel">
                 <i class="icon-ban-circle icon-white"></i>
-                <span>取消</span>
+                <span>全部取消</span>
             </button>
             <button type="button" class="btn btn-danger delete">
                 <i class="icon-trash icon-white"></i>
-                <span>删除</span>
+                <span>全部删除</span>
             </button>
             <input type="checkbox" class="toggle">
         </div>
