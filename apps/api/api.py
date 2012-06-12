@@ -39,6 +39,6 @@ class PinResource(ModelResource):  # pylint: disable-msg=R0904
         }
 
     def dehydrate_thumbnail(self, bundle):
-        pin = Pin.objects.only('image').get(pk=bundle.data['id'])
-        return pin.image.url_200x1000
+        pin = Pin.objects.only('file').get(pk=bundle.data['id'])
+        return pin.file.url_200x1000
 
