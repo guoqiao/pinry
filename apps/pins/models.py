@@ -2,6 +2,8 @@
 import os
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
 from thumbs import ImageWithThumbsField
 
 class Album(models.Model):
@@ -32,25 +34,14 @@ def pin_path(instance,filename):
 
 class Pin(models.Model):
     album = models.ForeignKey(Album)
-    image = ImageWithThumbsField('照片',upload_to=pin_path, sizes=((200, 1000),))
+    file = ImageWithThumbsField('照片',upload_to=pin_path, sizes=((200, 1000),))
     description = models.TextField('描述',blank=True, null=True)
 
     def __unicode__(self):
-        return self.image.name
+        return self.file.name
 
     def path(self,filename):
         return os.path.join(self.album.path(),filename)
-
-    def save(self, *args, **kwargs):
-        '''
-        if not self.image:
-            temp_img = NamedTemporaryFile()
-            temp_img.write(urllib2.urlopen(self.url).read())
-            temp_img.flush()
-            # pylint: disable-msg=E1101
-            self.image.save(self.url.split('/')[-1], File(temp_img))
-            '''
-        super(Pin, self).save()
 
     class Meta:
         ordering = ['-id']
