@@ -11,7 +11,7 @@ v1_api.register(AlbumResource())
 v1_api.register(PinResource())
 
 urlpatterns = patterns('',
-    url(r'^pins/', include('pins.urls', namespace='pins')),
+    url(r'^albums/', include('pins.urls', namespace='pins')),
     url(r'^api/', include(v1_api.urls)),
     url(r'', include('core.urls', namespace='core')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
