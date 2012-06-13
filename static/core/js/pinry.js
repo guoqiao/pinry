@@ -72,7 +72,7 @@ $(window).ready(function () {
         if (html === '') {
             tip = '<div class="alert alert-block fade in">';
             tip += '<a class="close" data-dismiss="alert" href="#">&times;</a>';
-            tip += '这个相册里还没有照片,登录后,点击右上角批量上传吧~~';
+            tip += '这个相册里还没有照片,登录后点击右上角,可以批量上传哦~~';
             tip += '</div>';
             $('#pins').html(tip);
         };
