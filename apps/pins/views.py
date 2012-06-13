@@ -42,10 +42,11 @@ def upload_pin(request, pk):
     return render(request, template, context)
 
 def delete_pin(request,pk):
-    Pin.objects.get(pk=pk).delete()
-    response = JSONResponse(True, {}, response_mimetype(request))
-    response['Content-Disposition'] = 'inline; filename=files.json'
-    return response
+    pin = Pin.objects.get(pk=pk)
+    album_id = pin.album.id
+    pin.delete()
+    url = reverse('pins:recent-pins', args=[album_id])
+    return redirect(url)
 
 def delete_album(request,pk):
     Album.objects.get(pk=pk).delete()

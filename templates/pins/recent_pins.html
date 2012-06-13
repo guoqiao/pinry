@@ -21,6 +21,10 @@
 {% block js %}
 <script type="text/javascript">
     var album_id = {{album.id}};
+    var is_owner = false;
+    {% if album.user.username == user.username %}
+        is_owner = true;
+    {% endif %}
 </script>
 <script src="/static/core/js/pinry.js"></script>
 {% endblock %}

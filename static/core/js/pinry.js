@@ -59,12 +59,14 @@ $(window).ready(function () {
         var i=0, length=data.length, pin;
         for(; i<length; i++) {
           pin = data[i];
-          console.log(pin);
           html += '<div class="pin">';
-              html += '<a class="fancybox" rel="pins" href="'+pin.file+'">';
-                  html += '<img src="'+pin.thumbnail+'" width="200" >';
-              html += '</a>';
-              html += '<p>'+pin.description+'</p>';
+          if (is_owner) {
+              html += '<a class="pull-right" href="/albums/delete-pin/' + pin.id +'">X</a>';
+          };
+          html += '<a class="fancybox" rel="pins" href="'+pin.file+'">';
+          html += '<img src="'+pin.thumbnail+'" width="200" >';
+          html += '</a>';
+          html += '<p>'+pin.description+'</p>';
           html += '</div>';
         }
         if (html === '') {
