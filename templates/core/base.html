@@ -32,8 +32,8 @@
 
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
-                        <li><a href="#new-album" data-toggle="modal">新建相册</a></li>
                         {% block nav %}{% endblock %}
+                        <li><a href="#new-album" data-toggle="modal">新建相册</a></li>
                         <li><a href="{% url core:logout %}">注销{{user}}</a></li>
                     {% else %}
                         <li><a href="{% url core:login %}">登录</a></li>
