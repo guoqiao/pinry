@@ -60,10 +60,11 @@ $(window).ready(function () {
         for(; i<length; i++) {
           album = data[i];
           html += '<div class="pin">';
-              html += '<a class="" rel="pins" href="'+album.id+'">';
-                  html += '<img src="/static/folder.jpg" width="200" >';
-              html += '</a>';
-              html += '<p>'+album.name+'</p>';
+          html += '<p><b>'+album.name +'</b><small>(' + album.count + '张)</small></p>';
+          html += '<a class="" rel="pins" href="'+album.id+'">';
+          html += '<img src="/static/folder.jpg" width="200" >';
+          html += '</a>';
+          html += '<p>by <b>'+album.username + '</b> at <i>' + album.create + '</i></p>';
           html += '</div>';
         }
         if (html === '') {

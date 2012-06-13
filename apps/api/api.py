@@ -17,6 +17,9 @@ class UserResource(ModelResource):
 
 class AlbumResource(ModelResource):
     user = fields.ForeignKey(UserResource, 'user')
+    username = fields.CharField(readonly=True)
+    count = fields.IntegerField(readonly=True)
+
     class Meta:
         queryset = Album.objects.all()
         resource_name = 'album'
@@ -25,6 +28,16 @@ class AlbumResource(ModelResource):
             'user': ALL_WITH_RELATIONS,
             'create': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
+
+    def dehydrate_username(self, bundle):
+        user = bundle.obj.user
+        return user.get_full_name() or user.username
+
+    def dehydrate_create(self, bundle):
+        return bundle.obj.create.strftime('%m-%d %H:%M')
+
+    def dehydrate_count(self, bundle):
+        return bundle.obj.pin_set.all().count()
 
 class PinResource(ModelResource):  # pylint: disable-msg=R0904
     album = fields.ForeignKey(AlbumResource, 'album')
