@@ -1,17 +1,12 @@
-{% extends 'core/base.html' %}
+{% extends 'pins/album_base.html' %}
 
-{% block title %}Recent Pins{% endblock %}
+{% block title %}{{album.name}}{% endblock %}
 
-{% block nav %}
-<li><a data-toggle="modal" href="#id_delete_album" >删除相册</a></li>
+{% block var %}
 <li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal">批量上传</a></li>
 {% endblock %}
 
-{% block album %}
-{{album.name}}
-{% endblock %}
-
-{% block yield %}
+{% block album_content %}
 <div id="pins"></div>
 <div id="loader" class="container">
     <div class="row">
@@ -21,19 +16,6 @@
     </div>
 </div>
 
-<div class="modal hide fade" id="id_delete_album">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3>删除相册</h3>
-    </div>
-    <div class="modal-body">
-        <p>相册中所有的照片都将被删除,确认继续?</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn close" data-dismiss="modal">取消</a>
-        <a href="{% url pins:delete-album album.id %}" class="btn btn-primary btn-danger">确认删除</a>
-    </div>
-</div>
 {% endblock %}
 
 {% block js %}

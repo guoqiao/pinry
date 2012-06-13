@@ -1,12 +1,16 @@
-{% extends 'core/base.html' %}
+{% extends 'pins/album_base.html' %}
 
 {% load bootstrap_field %}
 
 {% load upload_tags %}
 
-{% block title %}Upload Pictures{% endblock %}
+{% block title %}上传照片{% endblock %}
 
-{% block yield %}
+{% block var %}
+<li><a href="{% url pins:recent-pins album.id %}" data-toggle="modal">返回相册</a></li>
+{% endblock %}
+
+{% block album_content %}
 <div class="container">
 <form id="fileupload" method="post" action="." enctype="multipart/form-data">{% csrf_token %}
     <div class="row fileupload-buttonbar">
