@@ -21,9 +21,9 @@ window.locale = {
             "uploadedBytes": "Uploaded bytes exceed file size",
             "emptyResult": "Empty file upload result"
         },
-        "error": "Error",
-        "start": "Start",
-        "cancel": "Cancel",
-        "destroy": "Delete"
+        "error": "错误",
+        "start": "开始",
+        "cancel": "取消",
+        "destroy": "删除"
     }
 };
