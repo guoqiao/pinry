@@ -66,7 +66,9 @@ $(window).ready(function () {
               html += '<p>'+album.name+'</p>';
           html += '</div>';
         }
-        
+        if (html === '') {
+            $('#albums').html('<h3>还没有相册,登录后点击右上角新建一个吧~~</h3>');
+        };
         $('#albums').append(html);
         
         applyLayout();

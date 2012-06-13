@@ -67,7 +67,9 @@ $(window).ready(function () {
               html += '<p>'+pin.description+'</p>';
           html += '</div>';
         }
-        
+        if (html === '') {
+            $('#pins').html('<h3>这个相册里还没有照片,登录后点击右上角批量上传吧~~</h3>');
+        };
         $('#pins').append(html);
         
         applyLayout();
