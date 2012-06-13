@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.template.response import TemplateResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -16,8 +17,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Thank you for registering, you can now '
-                                      'login.')
+            messages.success(request, 'Thank you for registering, you can now login.')
             return HttpResponseRedirect(reverse('core:login'))
     else:
         form = UserCreationForm()
@@ -27,5 +27,5 @@ def register(request):
 @login_required
 def logout_user(request):
     logout(request)
-    messages.success(request, 'You have successfully logged out.')
+    messages.success(request, '你已经成功注销.')
     return HttpResponseRedirect(reverse('core:home'))
