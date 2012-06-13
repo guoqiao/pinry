@@ -61,7 +61,7 @@ $(window).ready(function () {
           pin = data[i];
           html += '<div class="pin">';
           if (is_owner) {
-              html += '<a class="pull-right" href="/albums/delete-pin/' + pin.id +'">X</a>';
+              html += '<a class="pull-right" href="/albums/delete-pin/' + pin.id +'">&times;</a>';
           };
           html += '<a class="fancybox" rel="pins" href="'+pin.file+'">';
           html += '<img src="'+pin.thumbnail+'" width="200" >';
@@ -70,7 +70,11 @@ $(window).ready(function () {
           html += '</div>';
         }
         if (html === '') {
-            $('#pins').html('<h3>这个相册里还没有照片,登录后点击右上角批量上传吧~~</h3>');
+            tip = '<div class="alert alert-block fade in">';
+            tip += '<a class="close" data-dismiss="alert" href="#">&times;</a>';
+            tip += '这个相册里还没有照片,登录后,点击右上角批量上传吧~~';
+            tip += '</div>';
+            $('#pins').html(tip);
         };
         $('#pins').append(html);
         

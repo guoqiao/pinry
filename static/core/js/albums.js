@@ -67,7 +67,11 @@ $(window).ready(function () {
           html += '</div>';
         }
         if (html === '') {
-            $('#albums').html('<h3>还没有相册,登录后点击右上角新建一个吧~~</h3>');
+            tip = '<div class="alert alert-block fade in">';
+            tip += '<a class="close" data-dismiss="alert" href="#">&times;</a>';
+            tip += '还没有相册,登录后点击右上角新建一个吧~~';
+            tip += '</div>';
+            $('#albums').html(tip);
         };
         $('#albums').append(html);
         
