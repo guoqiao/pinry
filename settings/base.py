@@ -2,7 +2,7 @@
 # Django settings for SPIG Django projects.
 import os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.join(HERE, '../')
+PROJECT_ROOT = os.path.normpath(os.path.join(HERE, '../'))
 APPS_ROOT = os.path.join(PROJECT_ROOT, 'apps')
 
 #SITE_URL = "http://iot-oa.insigma.com.cn"
