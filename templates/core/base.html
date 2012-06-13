@@ -28,7 +28,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <a href="{% url core:home %}" class="brand">HOME</a>
-                <a href="#" class="brand">{% block album %}{% endblock %}</a>
+                {% block nav_album %}{% endblock %}
 
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
