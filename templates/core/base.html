@@ -33,10 +33,10 @@
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
                         {% block nav %}{% endblock %}
-                        <li><a href="#new-album" data-toggle="modal">新建相册</a></li>
-                        <li><a href="{% url core:logout %}">注销{{user}}</a></li>
+                        <li><a href="#new-album" data-toggle="modal"><i class="icon-folder-open"></i>新建相册</a></li>
+                        <li><a href="{% url core:logout %}"><i class="icon-arrow-right"></i>注销{{user}}</a></li>
                     {% else %}
-                        <li><a href="{% url core:login %}">登录</a></li>
+                    <li><a href="{% url core:login %}"><i class="icon-user"></i>登录</a></li>
                     {% endif %}
                 </ul>
             </div>
