@@ -37,7 +37,7 @@ def upload_pin(request, pk):
         response['Content-Disposition'] = 'inline; filename=files.json'
         return response
 
-    context = {'form': form}
+    context = {'form': form, 'album': album}
     template = 'pins/pin_form.html'
     return render(request, template, context)
 
