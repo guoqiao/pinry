@@ -12,9 +12,11 @@
 
 {% block album_content %}
 <div class="container">
+    {% if user != album.user %}
     <div class="alert alert-info">
         <strong>注意! </strong>你不是相册的主人,你可以上传照片,但只有相册的主人可以删除哦:)
     </div>
+    {% endif %}
 <form id="fileupload" method="post" action="." enctype="multipart/form-data">{% csrf_token %}
     <div class="row fileupload-buttonbar">
         <div class="span7">
