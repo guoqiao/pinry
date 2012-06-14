@@ -45,7 +45,7 @@ def svctrl(c):
     os.system(x)
 
 def create_link(target, link_name):
-    x = 'ln -s -f %s %s' % (target,link_name)
+    x = 'ln -s -f -T %s %s' % (target,link_name)
     print x
     subprocess.call(x.split(), cwd='/var/www/')
 
