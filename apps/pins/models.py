@@ -49,5 +49,9 @@ class Pin(models.Model):
     def __unicode__(self):
         return self.file.name
 
+    def delete(self, *args, **kwargs):
+        self.file.delete()
+        super(Pin,self).delete()
+
     class Meta:
         ordering = ['-id']
