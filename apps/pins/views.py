@@ -59,15 +59,12 @@ def download_album(request,pk):
     obj = Album.objects.get(pk=pk)
     tarname = obj.name + '.zip'
     tarpath = os.path.join('/tmp/', tarname)
-    print 'tarpath', tarpath
     tar = zipfile.ZipFile(tarpath, 'w')
-    path = obj.path()
-    print 'obj.path',path
 
-    for filename in os.listdir(path):
-        print filename
-        if not '200x1000' in filename:
-            tar.write(os.path.join(path, filename),arcname=filename)
+    for pin in obj.pin_set.all():
+        filename = pin.file.name # albums/1/a.jpg
+        split = os.path.split(filename)
+        tar.write(pin.path(), arcname=split[1])
 
     tar.close()
 

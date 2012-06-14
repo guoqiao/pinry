@@ -49,6 +49,9 @@ class Pin(models.Model):
     def __unicode__(self):
         return self.file.name
 
+    def path(self):
+        return os.path.join(settings.MEDIA_ROOT,self.file.name)
+
     def delete(self, *args, **kwargs):
         self.file.delete()
         super(Pin,self).delete()
