@@ -3,7 +3,8 @@
 {% block title %}{{album.name}}{% endblock %}
 
 {% block var %}
-<li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal"><i class="icon-picture"></i>批量上传</a></li>
+<li><a href="{% url pins:download-album album.id %}" data-toggle="modal"><i class="icon-download"></i>下载相册</a></li>
+<li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal"><i class="icon-upload"></i>批量上传</a></li>
 {% endblock %}
 
 {% block album_content %}

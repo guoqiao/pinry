@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import tarfile
 from django.template.response import TemplateResponse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -23,7 +25,6 @@ def upload_pin(request, pk):
         form = PinForm(instance=pin)
     else:
         form = PinForm(request.POST, request.FILES, instance=pin)
-        print form
         if form.is_valid():
             pin = form.save()
             data = [{
@@ -52,6 +53,31 @@ def delete_album(request,pk):
     Album.objects.get(pk=pk).delete()
     url = reverse('pins:recent-albums')
     return redirect(url)
+
+def download_album(request,pk):
+    import zipfile
+    obj = Album.objects.get(pk=pk)
+    tarname = obj.name + '.zip'
+    tarpath = os.path.join('/tmp/', tarname)
+    print 'tarpath', tarpath
+    tar = zipfile.ZipFile(tarpath, 'w')
+    path = obj.path()
+    print 'obj.path',path
+
+    for filename in os.listdir(path):
+        print filename
+        if not '200x1000' in filename:
+            tar.write(os.path.join(path, filename),arcname=filename)
+
+    tar.close()
+
+    fp = open(tarpath, 'rb')
+    data = fp.read()
+    fp.close()
+
+    response = HttpResponse(data,mimetype='application/octet-stream')
+    response['Content-Disposition'] = 'attachment; filename=%s' % (tarname)
+    return response
 
 class PinCreateView(CreateView):
     model = Pin
