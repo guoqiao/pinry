@@ -62,7 +62,7 @@ $(window).ready(function () {
           html += '<div class="pin">';
           html += '<p><b>'+album.name +'</b><small>(' + album.count + '张)</small></p>';
           html += '<a class="" rel="pins" href="'+album.id+'">';
-          html += '<img src="/static/folder.jpg" width="200" >';
+          html += '<img src="' + STATIC_URL + 'folder.jpg" width="200" >';
           html += '</a>';
           html += '<p>by <b>'+album.username + '</b> at <i>' + album.create + '</i></p>';
           html += '</div>';
