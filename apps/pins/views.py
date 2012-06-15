@@ -125,6 +125,12 @@ def recent_albums(request):
 
 def recent_pins(request, pk):
     album = Album.objects.get(pk=pk)
+    if not album.pin_set.all():
+        x =  '相册中还没有照片,登录后可以批量上传哦~'
+        if request.user.is_authenticated():
+            x = '相册中还没有照片,试试批量上传吧~'
+        messages.info(request,x)
+
     context = {
         'album':album,
         'per_page': settings.API_LIMIT_PER_PAGE,
@@ -138,7 +144,7 @@ def new_album(request):
             a = form.save(commit=False)
             a.user = request.user
             a.save()
-            messages.success(request, '新建相册成功,你可以上传照片了')
+            messages.success(request, '新建相册成功')
             url = reverse('pins:recent-pins', args=[a.id])
             return HttpResponseRedirect(url)
         else:
