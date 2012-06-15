@@ -3,32 +3,6 @@ body {
     background: url("../img/background.png");
 }
 
-.navbar-inner {
-    background-image: none;
-    background: white;
-    border-bottom: 1px solid #999;
-    height: 48px;
-}
-
-    .navbar .brand {
-        margin-left: 0;
-        color: #333;
-        font-family: 'Monoton';
-        font-size: 30px;
-    }
-
-    .navbar .nav > li > a {
-        color: #333;
-        text-shadow: none;
-        border-left: 1px solid #ccc;
-        padding: 14px 20px 15px;
-    }
-
-    .navbar .nav > li > a:hover {
-        color: #333;
-        text-decoration: underline;
-    }
-
 .messages {
     list-style-type: none;
     top: 50px;
