@@ -132,7 +132,7 @@ def new_album(request):
             a = form.save(commit=False)
             a.user = request.user
             a.save()
-            messages.success(request, '新建相册成功')
+            messages.success(request, '新建相册成功,你可以上传照片了')
             url = reverse('pins:recent-pins', args=[a.id])
             return HttpResponseRedirect(url)
         else:
