@@ -27,18 +27,33 @@
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <a href="{% url core:home %}" class="brand">HOME</a>
-                {% block nav_album %}{% endblock %}
+                <div class="container">
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
 
-                <ul class="nav pull-right">
-                    {% if user.is_authenticated %}
-                        {% block nav %}{% endblock %}
-                        <li><a href="#new-album" data-toggle="modal"><i class="icon-folder-open"></i>新建相册</a></li>
-                        <li><a href="{% url core:logout %}"><i class="icon-arrow-right"></i>注销{{user}}</a></li>
-                    {% else %}
-                    <li><a href="{% url core:login %}"><i class="icon-user"></i>登录</a></li>
-                    {% endif %}
-                </ul>
+                    <!-- Everything you want hidden at 940px or less, place within here -->
+                    <div class="nav-collapse">
+                        <!-- .nav, .navbar-search, .navbar-form, etc -->
+                        <ul class="nav">
+                            <li class="{% block home_active %}{% endblock %}"><a href="{% url core:home %}"><i class="icon-home icon-white"></i>首页</a></li>
+                            {% block nav_album %}{% endblock %}
+                        </ul>
+                        <ul class="nav pull-right">
+                            {% if user.is_authenticated %}
+                                {% block nav %}{% endblock %}
+                                <li><a href="#new-album" data-toggle="modal"><i class="icon-folder-open icon-white"></i>新建相册</a></li>
+                                <li><a href="#"><i class="icon-user icon-white"></i>{{user}}</a></li>
+                                <li><a href="{% url core:logout %}"><i class="icon-off icon-white"></i>退出</a></li>
+                            {% else %}
+                            <li><a href="{% url core:login %}"><i class="icon-user icon-white"></i>登录</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 

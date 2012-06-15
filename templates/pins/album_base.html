@@ -5,14 +5,13 @@
 {% block nav %}
 {% block var %}{% endblock %}
 {% if user.is_authenticated and user.username == album.user.username %}
-<li><a data-toggle="modal" href="#id_delete_album" ><i class="icon-trash"></i>删除相册</a></li>
+<li><a data-toggle="modal" href="#id_delete_album" ><i class="icon-trash icon-white"></i>删除相册</a></li>
 {% endif %}
 {% endblock %}
 
 {% block nav_album %}
-<a class='brand' href="{% url pins:recent-pins album.id %}">{{album.name}}</a>
+<li class="{% block album_active %}{% endblock %}"><a href="{% url pins:recent-pins album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a></li>
 {% endblock %}
-
 
 {% block yield %}
 <div class="modal hide fade" id="id_delete_album">
