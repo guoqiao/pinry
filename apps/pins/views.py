@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import tarfile
 from django.template.response import TemplateResponse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -8,6 +7,7 @@ from django.contrib import messages
 from django.views.generic import CreateView, DeleteView
 from django.utils import simplejson
 from django.shortcuts import render,redirect
+from django.conf import settings
 
 from .models import Album,Pin
 from .forms import PinForm,AlbumForm
@@ -119,7 +119,7 @@ def recent_albums(request):
 
 def recent_pins(request, pk):
     album = Album.objects.get(pk=pk)
-    return TemplateResponse(request, 'pins/recent_pins.html', {'album':album})
+    return TemplateResponse(request, 'pins/recent_pins.html', {'album':album, 'per_page': settings.API_LIMIT_PER_PAGE})
 
 def new_album(request):
     if request.method == 'POST':

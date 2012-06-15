@@ -202,3 +202,6 @@ DEFAULT_FROM_EMAIL='spig@insigma.com.cn'
 #djcelery.setup_loader()
 #BROKER_URL = "django://"
 ALBUM_ROOT = os.path.join(MEDIA_ROOT,'albums')
+
+# tastypie
+API_LIMIT_PER_PAGE = 50

@@ -23,6 +23,7 @@
 <script type="text/javascript">
     var album_id = {{album.id}};
     var is_owner = false;
+    var per_page = {{ per_page }};
     {% if album.user.username == user.username %}
         is_owner = true;
     {% endif %}
