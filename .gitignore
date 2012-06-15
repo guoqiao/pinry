@@ -16,6 +16,7 @@ ENV/
 *.db
 /media/
 #/static/
+which.py
 
 # python
 *.pyc
