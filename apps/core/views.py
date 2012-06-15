@@ -27,5 +27,5 @@ def register(request):
 @login_required
 def logout_user(request):
     logout(request)
-    messages.success(request, '你已经成功注销.')
+    messages.success(request, '你已经成功退出.')
     return HttpResponseRedirect(reverse('core:home'))
