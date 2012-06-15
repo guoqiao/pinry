@@ -119,7 +119,12 @@ def recent_albums(request):
 
 def recent_pins(request, pk):
     album = Album.objects.get(pk=pk)
-    return TemplateResponse(request, 'pins/recent_pins.html', {'album':album, 'per_page': settings.API_LIMIT_PER_PAGE})
+    context = {
+        'album':album,
+        'per_page': settings.API_LIMIT_PER_PAGE,
+        'total': album.pin_set.all().count(),
+    }
+    return TemplateResponse(request, 'pins/recent_pins.html', context)
 
 def new_album(request):
     if request.method == 'POST':

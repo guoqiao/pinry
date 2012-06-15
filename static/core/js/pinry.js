@@ -4,7 +4,6 @@
 $(window).ready(function () {
     var apiURL = '/api/v1/pin/?album='+album_id+'&format=json&offset='
     var page = 0;
-    var no_more = false;
     var handler = null;
     var isLoading = false;
     
@@ -12,6 +11,7 @@ $(window).ready(function () {
      * When scrolled all the way to the bottom, add more tiles.
      */
     function onScroll(event) {
+      if (page*per_page >= total) return;
       if(!isLoading) {
           var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
           if(closeToBottom) loadData();
@@ -37,7 +37,6 @@ $(window).ready(function () {
      * Loads data from the API.
      */
     function loadData() {
-        if (no_more) return;
         isLoading = true;
         $('#loader').show();
         
@@ -57,7 +56,6 @@ $(window).ready(function () {
 
         var html = '';
         var i=0, length=data.length, pin;
-        no_more = length < per_page;
         for(; i<length; i++) {
           pin = data[i];
           html += '<div class="pin">';
