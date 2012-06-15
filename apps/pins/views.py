@@ -115,6 +115,12 @@ class JSONResponse(HttpResponse):
         super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
 
 def recent_albums(request):
+    objs = Album.objects.all()
+    if not objs:
+        x =  '还没有相册,登录后新建一个吧~'
+        if request.user.is_authenticated():
+            x =   '还没有相册,赶快新建一个吧~'
+        messages.info(request,x)
     return TemplateResponse(request, 'pins/recent_albums.html', None)
 
 def recent_pins(request, pk):

@@ -67,13 +67,6 @@ $(window).ready(function () {
           html += '<p>by <b>'+album.username + '</b> at <i>' + album.create + '</i></p>';
           html += '</div>';
         }
-        if (html === '') {
-            tip = '<div class="alert alert-block fade in">';
-            tip += '<a class="close" data-dismiss="alert" href="#">&times;</a>';
-            tip += '还没有相册,登录后点击右上角新建一个吧~~';
-            tip += '</div>';
-            $('#albums').html(tip);
-        };
         $('#albums').append(html);
         
         applyLayout();
