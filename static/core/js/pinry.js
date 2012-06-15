@@ -40,7 +40,7 @@ $(window).ready(function () {
         $('#loader').show();
         
         $.ajax({
-            url: apiURL+(page*20),
+            url: apiURL+(page*24),
             success: onLoadData
         });
     };
