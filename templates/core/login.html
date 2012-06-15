@@ -27,7 +27,7 @@
 
 {% block yield %}
 <div class="span6 offset3 login">
-    <form action="" method="post">
+    <form class="form" action="" method="post">
         {% csrf_token %}
         <div class="formbody">
             {% if form.errors %}
