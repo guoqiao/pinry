@@ -52,9 +52,7 @@ $(window).ready(function () {
         data = data.objects;
         isLoading = false;
         $('#loader').hide();
-        
-        page++;
-        
+
         var html = '';
         var i=0, length=data.length, pin;
         for(; i<length; i++) {
@@ -75,9 +73,10 @@ $(window).ready(function () {
             tip += '这个相册里还没有照片,登录后点击右上角,可以批量上传哦~~';
             tip += '</div>';
             $('#pins').html(tip);
+        } else {
+            page++;
         };
         $('#pins').append(html);
-        
         applyLayout();
     };
   
