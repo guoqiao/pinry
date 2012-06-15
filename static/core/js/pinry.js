@@ -11,7 +11,6 @@ $(window).ready(function () {
      * When scrolled all the way to the bottom, add more tiles.
      */
     function onScroll(event) {
-      if (page*per_page >= total) return;
       if(!isLoading) {
           var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
           if(closeToBottom) loadData();
@@ -53,6 +52,7 @@ $(window).ready(function () {
         data = data.objects;
         isLoading = false;
         $('#loader').hide();
+        page++;
 
         var html = '';
         var i=0, length=data.length, pin;
@@ -68,15 +68,6 @@ $(window).ready(function () {
           html += '<p>'+pin.description+'</p>';
           html += '</div>';
         }
-        if (html === '') {
-            tip = '<div class="alert alert-block fade in">';
-            tip += '<a class="close" data-dismiss="alert" href="#">&times;</a>';
-            tip += '这个相册里还没有照片,登录后点击右上角,可以批量上传哦~~';
-            tip += '</div>';
-            $('#pins').html(tip);
-        } else {
-            page++;
-        };
         $('#pins').append(html);
         applyLayout();
     };

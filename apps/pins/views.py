@@ -122,7 +122,6 @@ def recent_pins(request, pk):
     context = {
         'album':album,
         'per_page': settings.API_LIMIT_PER_PAGE,
-        'total': album.pin_set.all().count(),
     }
     return TemplateResponse(request, 'pins/recent_pins.html', context)
 
