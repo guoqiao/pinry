@@ -64,7 +64,8 @@ $(window).ready(function () {
           html += '<a class="" rel="pins" href="'+album.id+'">';
           html += '<img src="' + STATIC_URL + 'album.png" width="200" >';
           html += '</a>';
-          html += '<p>by <b>'+album.username + '</b> at <i>' + album.create + '</i></p>';
+          html += '<p>by <b>' + album.username + '</b></p>';
+          html += '<p>at <i>' + album.create + '</i></p>';
           html += '</div>';
         }
         $('#albums').append(html);
