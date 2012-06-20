@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DeleteView
 from django.utils import simplejson
 from django.shortcuts import render,redirect
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from .models import Album,Pin
 from .forms import PinForm,AlbumForm
@@ -18,6 +19,7 @@ def response_mimetype(request):
     else:
         return "text/plain"
 
+@login_required
 def upload_pin(request, pk):
     album = Album.objects.get(pk=pk)
     pin = Pin(album=album)
@@ -44,6 +46,7 @@ def upload_pin(request, pk):
     template = 'pins/pin_form.html'
     return render(request, template, context)
 
+@login_required
 def delete_pin(request,pk):
     pin = Pin.objects.get(pk=pk)
     album_id = pin.album.id
@@ -51,6 +54,7 @@ def delete_pin(request,pk):
     url = reverse('pins:recent-pins', args=[album_id])
     return redirect(url)
 
+@login_required
 def delete_album(request,pk):
     Album.objects.get(pk=pk).delete()
     url = reverse('pins:recent-albums')
@@ -139,6 +143,7 @@ def recent_pins(request, pk):
     }
     return TemplateResponse(request, 'pins/recent_pins.html', context)
 
+@login_required
 def new_album(request):
     if request.method == 'POST':
         form = AlbumForm(request.POST)
@@ -158,6 +163,7 @@ def new_album(request):
     }
     return TemplateResponse(request, 'pins/new_album.html', context)
 
+@login_required
 def new_pin(request,pk):
     album = Album.objects.get(pk=pk)
     if request.method == 'POST':
