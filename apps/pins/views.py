@@ -22,6 +22,8 @@ def upload_pin(request, pk):
     album = Album.objects.get(pk=pk)
     pin = Pin(album=album)
     if request.method == 'GET':
+        if request.user != album.user:
+            messages.info(request,'注意:你可以上传照片,但只有相册的主人可以删除照片')
         form = PinForm(instance=pin)
     else:
         form = PinForm(request.POST, request.FILES, instance=pin)
