@@ -4,7 +4,6 @@ from django.template.response import TemplateResponse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from django.views.generic import CreateView, DeleteView
 from django.utils import simplejson
 from django.shortcuts import render,redirect
 from django.conf import settings
@@ -55,6 +54,14 @@ def delete_pin(request,pk):
     return redirect(url)
 
 @login_required
+def pin(request,pk):
+    pin = Pin.objects.get(pk=pk)
+    album_id = pin.album.id
+    pin.delete()
+    url = reverse('pins:recent-pins', args=[album_id])
+    return redirect(url)
+
+@login_required
 def delete_album(request,pk):
     Album.objects.get(pk=pk).delete()
     url = reverse('pins:recent-albums')
@@ -81,38 +88,6 @@ def download_album(request,pk):
     response = HttpResponse(data,mimetype='application/octet-stream')
     response['Content-Disposition'] = 'attachment; filename=%s' % (tarname)
     return response
-
-class PinCreateView(CreateView):
-    model = Pin
-
-    def form_valid(self, form):
-        self.object = form.save()
-        f = self.request.FILES.get('image')
-        data = [{
-            'name': f.name, 
-            'url': self.object.url(),
-            'thumbnail_url': self.object.image.url(),
-            'delete_url': reverse('delete', args=[self.object.id]), 
-            'delete_type': "DELETE",
-        }]
-        response = JSONResponse(data, {}, response_mimetype(self.request))
-        response['Content-Disposition'] = 'inline; filename=files.json'
-        return response
-
-
-class PinDeleteView(DeleteView):
-    model = Pin
-
-    def delete(self, request, *args, **kwargs):
-        """
-        This does not actually delete the file, only the database record.  But
-        that is easy to implement.
-        """
-        self.object = self.get_object()
-        self.object.delete()
-        response = JSONResponse(True, {}, response_mimetype(self.request))
-        response['Content-Disposition'] = 'inline; filename=files.json'
-        return response
 
 class JSONResponse(HttpResponse):
     """JSON response class."""
