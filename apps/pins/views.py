@@ -95,7 +95,7 @@ class JSONResponse(HttpResponse):
         content = simplejson.dumps(obj,**json_opts)
         super(JSONResponse,self).__init__(content,mimetype,*args,**kwargs)
 
-def recent_albums(request):
+def albums(request):
     objs = Album.objects.all()
     if not objs:
         x =  '还没有相册,登录后新建一个吧~'
