@@ -17,6 +17,7 @@ ENV/
 /media/
 #/static/
 which.py
+local.py
 
 # python
 *.pyc
