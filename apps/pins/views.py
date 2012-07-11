@@ -54,14 +54,6 @@ def delete_pin(request,pk):
     return redirect(url)
 
 @login_required
-def pin(request,pk):
-    pin = Pin.objects.get(pk=pk)
-    album_id = pin.album.id
-    pin.delete()
-    url = reverse('pins:recent-pins', args=[album_id])
-    return redirect(url)
-
-@login_required
 def delete_album(request,pk):
     Album.objects.get(pk=pk).delete()
     url = reverse('pins:recent-albums')
