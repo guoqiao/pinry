@@ -96,7 +96,7 @@ def albums(request):
         messages.info(request,x)
     return TemplateResponse(request, 'pins/recent_albums.html', None)
 
-def recent_pins(request, pk):
+def pins(request, pk):
     album = Album.objects.get(pk=pk)
     if not album.pin_set.all():
         x =  '相册中还没有照片,登录后可以批量上传哦~'

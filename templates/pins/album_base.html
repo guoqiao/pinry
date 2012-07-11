@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block nav_album %}
-<li class="{% block album_active %}{% endblock %}"><a href="{% url pins:recent-pins album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a></li>
+<li class="{% block album_active %}{% endblock %}"><a href="{% url pins:pins album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a></li>
 {% endblock %}
 
 {% block yield %}
