@@ -108,7 +108,7 @@ def pins(request, pk):
         'album':album,
         'per_page': settings.API_LIMIT_PER_PAGE,
     }
-    return TemplateResponse(request, 'pins/recent_pins.html', context)
+    return TemplateResponse(request, 'pins/pins.html', context)
 
 @login_required
 def new_album(request):
