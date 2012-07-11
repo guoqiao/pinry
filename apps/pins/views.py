@@ -94,7 +94,7 @@ def albums(request):
         if request.user.is_authenticated():
             x =   '还没有相册,赶快新建一个吧~'
         messages.info(request,x)
-    return TemplateResponse(request, 'pins/recent_albums.html', None)
+    return TemplateResponse(request, 'pins/albums.html', None)
 
 def pins(request, pk):
     album = Album.objects.get(pk=pk)
