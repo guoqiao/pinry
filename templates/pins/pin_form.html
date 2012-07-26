@@ -1,17 +1,14 @@
 {% extends 'pins/album_base.html' %}
-
 {% load bootstrap_field %}
-
 {% load upload_tags %}
 
-{% block title %}上传照片{% endblock %}
-
-{% block var %}
-<li><a href="{% url pins:recent-pins album.id %}" data-toggle="modal"><i class="icon-arrow-left icon-white"></i>返回相册</a></li>
+{% block nav_right %}
+<li><a href="{% url pins:pins album.id %}" data-toggle="modal"><i class="icon-arrow-left icon-white"></i>返回</a></li>
+{{ block.super }}
 {% endblock %}
 
-{% block album_content %}
-<div class="container">
+{% block content %}
+{{ block.super }}
 <!--[if IE ]>
 <p>你使用的是IE内核的浏览器,它不支持文件多选.推荐使用
 <a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html">Chrome</a>,
@@ -19,7 +16,8 @@
 <a href="http://www.opera.com/download/">Opera</a>
 .</p>
 <![endif]-->
-<form id="fileupload" method="post" action="." enctype="multipart/form-data">{% csrf_token %}
+<form id="fileupload" method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="row fileupload-buttonbar">
         <div class="span7">
             <span class="btn btn-primary fileinput-button">
@@ -53,36 +51,8 @@
 </form>
 <div class="fileupload-content">
     <table class="files"></table>
-<div class="fileupload-progressbar"></div>
+    <div class="fileupload-progressbar"></div>
 </div>
-    <!-- modal-gallery is the modal dialog used for the image gallery -->
-    <div id="modal-gallery" class="modal modal-gallery hide fade" data-filter=":odd">
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal">&times;</a>
-            <h3 class="modal-title"></h3>
-        </div>
-        <div class="modal-body"><div class="modal-image"></div></div>
-        <div class="modal-footer">
-            <a class="btn modal-download" target="_blank">
-                <i class="icon-download"></i>
-                <span>下载</span>
-            </a>
-            <a class="btn btn-success modal-play modal-slideshow" data-slideshow="3000">
-                <i class="icon-play icon-white"></i>
-                <span>幻灯片</span>
-            </a>
-            <a class="btn btn-info modal-prev">
-                <i class="icon-arrow-left icon-white"></i>
-                <span>上一张</span>
-            </a>
-            <a class="btn btn-primary modal-next">
-                <span>下一张</span>
-                <i class="icon-arrow-right icon-white"></i>
-            </a>
-        </div>
-    </div>
-	
-	{% upload_js %}
-</div>
+{% upload_js %}
 {% endblock %}
 

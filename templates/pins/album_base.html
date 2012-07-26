@@ -1,19 +1,24 @@
 {% extends 'core/base.html' %}
 
-{% block title %}相册{% endblock %}
+{% block nav_left %}
+<li class="{% block album_active %}{% endblock %}">
+    <a href="{% url pins:pins album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a>
+</li>
+{% endblock %}
 
-{% block nav %}
-{% block var %}{% endblock %}
+{% block nav_right %}
+{% if album.pin_set.all.count %}
+    <li><a href="{% url pins:download-album album.id %}" data-toggle="modal"><i class="icon-download icon-white"></i>下载</a></li>
+{% endif %}
+{% if user.is_authenticated %}
+    <li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal"><i class="icon-upload icon-white"></i>上传</a></li>
+{% endif %}
 {% if user.is_authenticated and user.username == album.user.username %}
-<li><a data-toggle="modal" href="#id_delete_album" ><i class="icon-trash icon-white"></i>删除相册</a></li>
+    <li><a data-toggle="modal" href="#id_delete_album" ><i class="icon-trash icon-white"></i>删除</a></li>
 {% endif %}
 {% endblock %}
 
-{% block nav_album %}
-<li class="{% block album_active %}{% endblock %}"><a href="{% url pins:pins album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a></li>
-{% endblock %}
-
-{% block yield %}
+{% block content %}
 <div class="modal hide fade" id="id_delete_album">
     <div class="modal-header">
         <a class="close" data-dismiss="modal">&times;</a>
@@ -27,5 +32,30 @@
         <a href="{% url pins:delete-album album.id %}" class="btn btn-primary btn-danger">确认删除</a>
     </div>
 </div>
-{% block album_content %}{% endblock %}
+<!-- modal-gallery is the modal dialog used for the image gallery -->
+<div id="modal-gallery" class="modal modal-gallery hide fade">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+        <a class="btn modal-download" target="_blank">
+            <i class="icon-download"></i>
+            <span>下载</span>
+        </a>
+        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="3000">
+            <i class="icon-play icon-white"></i>
+            <span>幻灯片</span>
+        </a>
+        <a class="btn btn-info modal-prev">
+            <i class="icon-arrow-left icon-white"></i>
+            <span>上一张</span>
+        </a>
+        <a class="btn btn-primary modal-next">
+            <span>下一张</span>
+            <i class="icon-arrow-right icon-white"></i>
+        </a>
+    </div>
+</div>
 {% endblock %}

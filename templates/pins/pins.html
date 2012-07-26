@@ -1,32 +1,16 @@
 {% extends 'pins/album_base.html' %}
 
-{% block title %}{{album.name}}{% endblock %}
 {% block album_active %}active{% endblock %}
-{% block var %}
-<li><a href="{% url pins:download-album album.id %}" data-toggle="modal"><i class="icon-download icon-white"></i>下载相册</a></li>
-<li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal"><i class="icon-upload icon-white"></i>批量上传</a></li>
-{% endblock %}
 
-{% block album_content %}
-<div id="pins"></div>
-<div id="loader" class="container">
-    <div class="row">
-        <div class="span2 offset5">
-            <img src="{{STATIC_URL}}core/img/loader.gif" alt="Loader">
-        </div>
-    </div>
+{% block content %}
+{{ block.super }}
+<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+    {% for pin in album.pin_set.all %}
+    <a rel="gallery" href="{{ pin.file.url }}" title="{{ pin.file.name }}">
+        <img src="{{ pin.file.url_200x1000 }}" alt="" width=200px />
+    </a>
+    {% endfor %}
 </div>
 
 {% endblock %}
 
-{% block js %}
-<script type="text/javascript">
-    var album_id = {{album.id}};
-    var is_owner = false;
-    var per_page = {{ per_page }};
-    {% if album.user.username == user.username %}
-        is_owner = true;
-    {% endif %}
-</script>
-<script src="{{ STATIC_URL }}core/js/pinry.js"></script>
-{% endblock %}

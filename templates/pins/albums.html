@@ -1,14 +1,16 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Recent Albums{% endblock %}
 {% block home_active %}active{% endblock %}
-{% block yield %}
-    <div id="albums"></div>
-    <div id="loader" class="container">
-        <div class="row">
-            <div class="span2 offset5">
-                <img src="{{ STATIC_URL }}core/img/loader.gif" alt="Loader">
-            </div>
-        </div>
-    </div>
+{% block content %}
+{{ block.super }}
+<ul id="id_albums" class="unstyled">
+    {% for a in objs %}
+    <li class="album">
+        <p><b>{{a.name}}</b><small>({{a.pin_set.all.count}}张)</small></p>
+        <a rel="pins" href="{{a.id}}"><img src="{{ a.face }}" width="200" height="200"></a>
+        <p>by <b>{{a.user}}</b></p>
+        <p>at <i>{{a.create}}</i></p>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
