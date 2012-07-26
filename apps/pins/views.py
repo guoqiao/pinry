@@ -24,7 +24,8 @@ def upload_pin(request, pk):
     pin = Pin(album=album)
     if request.method == 'GET':
         if request.user != album.user:
-            messages.info(request,'注意:你可以上传照片,但只有相册的主人可以删除照片')
+            #messages.info(request,'注意:你可以上传照片,但只有相册的主人可以删除照片')
+            pass
         form = PinForm(instance=pin)
     else:
         form = PinForm(request.POST, request.FILES, instance=pin)
@@ -50,13 +51,13 @@ def delete_pin(request,pk):
     pin = Pin.objects.get(pk=pk)
     album_id = pin.album.id
     pin.delete()
-    url = reverse('pins:recent-pins', args=[album_id])
+    url = reverse('pins:pins', args=[album_id])
     return redirect(url)
 
 @login_required
 def delete_album(request,pk):
     Album.objects.get(pk=pk).delete()
-    url = reverse('pins:recent-albums')
+    url = reverse('pins:albums')
     return redirect(url)
 
 def download_album(request,pk):
@@ -94,7 +95,7 @@ def albums(request):
         if request.user.is_authenticated():
             x =   '还没有相册,赶快新建一个吧~'
         messages.info(request,x)
-    return TemplateResponse(request, 'pins/albums.html', None)
+    return TemplateResponse(request, 'pins/albums.html', {'objs':objs})
 
 def pins(request, pk):
     album = Album.objects.get(pk=pk)
@@ -119,7 +120,7 @@ def new_album(request):
             a.user = request.user
             a.save()
             messages.success(request, '新建相册成功')
-            url = reverse('pins:recent-pins', args=[a.id])
+            url = reverse('pins:pins', args=[a.id])
             return HttpResponseRedirect(url)
         else:
             messages.error(request, 'Album did not pass validation!')
