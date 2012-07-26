@@ -37,6 +37,15 @@ class Album(models.Model):
             shutil.rmtree(path)
         super(Album,self).delete()
 
+    def face(self):
+        pins = self.pin_set.all()
+        if pins:
+            import random
+            i = random.randint(0, len(pins)-1)
+            return pins[i].file.url_200x1000
+        else:
+            return os.path.join(settings.STATIC_URL, 'album.png')
+
 def pin_upload_to(instance,filename):
     # the disk path relative to media root
     return os.path.join(ALBUMS_DIR,str(instance.album.id),filename)
