@@ -69,16 +69,21 @@ a:hover, a:focus, a:active { color: #0c4c9d; }
     text-align: center;
 }
 
-#albums {
-    top: 70px;
-    position: absolute;
-    background: #eee;
+#id_albums {
+    top: 0px;
+    position: relative;
+    //background: #eee;
     z-index: 100;
 }
 
+#id_albums li .album {
+    top: 0px;
+    position: relative;
+}
+
 #pins {
-    top: 70px;
-    position: absolute;
+    top: 0px;
+    position: relative;
     background: #eee;
     z-index: 100;
 }
