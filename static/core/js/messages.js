@@ -9,4 +9,11 @@ $(document).ready(function() {
         delayTime -= 250;
         console.log(delayTime);
     });
+    handler = $('#id_albums li');
+    handler.wookmark({
+        container: $('#id_albums'),
+        autoResize: true,
+        offset: 3,
+        itemWidth: 242
+    });
 });
