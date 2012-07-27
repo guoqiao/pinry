@@ -131,24 +131,3 @@ def new_album(request):
     }
     return TemplateResponse(request, 'pins/new_album.html', context)
 
-@login_required
-def new_pin(request,pk):
-    album = Album.objects.get(pk=pk)
-    if request.method == 'POST':
-        form = PinForm(request.POST, request.FILES)
-        if form.is_valid():
-            pin = form.save(commit=False)
-            pin.album = album
-            pin.save()
-            messages.success(request, '上传照片成功')
-            return HttpResponseRedirect(reverse('pins:recent-pins', args=[pk]))
-        else:
-            messages.error(request, 'Pin did not pass validation!')
-    else:
-        form = PinForm(initial={'album':album})
-    context = {
-        'form': form,
-        'pk': pk,
-    }
-    return TemplateResponse(request, 'pins/new_pin.html', context)
-
