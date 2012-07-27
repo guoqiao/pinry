@@ -12,11 +12,7 @@
             <link rel="stylesheet" href="{{ STATIC_URL }}vendor/bootstrap/2.0.3/css/bootstrap.min.css">
             <link rel="stylesheet" href="{{ STATIC_URL }}vendor/fancybox/2.0.6/jquery.fancybox.css">
         {% endif %}
-        <!-- Generic page styles -->
-        <!-- link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/style.css" -->
-        <!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
         <link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/bootstrap-responsive.min.css">
-        <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
         <link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/bootstrap-image-gallery.min.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}fileupload/css/jquery.fileupload-ui.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}core/css/pinry.css">
@@ -33,9 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a href="{% url core:home %}" class="brand">
-                        <img src="{{ STATIC_URL }}album.png" alt="Pshare" width=24px height=24px/>Pshare
-                    </a>
+                    <a href="{% url core:home %}" class="brand"><img src="{{ STATIC_URL }}album.png" alt="Pshare" width=24px height=24px/>Pshare</a>
 
                     <!-- Everything you want hidden at 940px or less, place within here -->
                     <div class="nav-collapse">
@@ -97,12 +91,6 @@
         <script src="{{ STATIC_URL }}fileupload/js/jquery.fileupload-ui.js"></script>
         <script src="{{ STATIC_URL }}fileupload/js/locale.js"></script>
         <script src="{{ STATIC_URL }}fileupload/js/main.js"></script>
-        <!-- script src="{{ STATIC_URL }}core/js/albums.js"-->
         <script src="{{ STATIC_URL }}core/js/messages.js"></script>
-        <script type="text/javascript">
-            var STATIC_URL = '{{ STATIC_URL }}';
-            var MEDIA_URL  = '{{ MEDIA_URL }}';
-        </script>
-        {% block js %}{% endblock %}
     </body>
 </html>
