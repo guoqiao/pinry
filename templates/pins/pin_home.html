@@ -1,0 +1,34 @@
+{% extends 'pins/album_base.html' %}
+
+{% block content %}
+{{block.super}}
+<div class="row-fluid">
+    <div class="span9">
+
+<div id="image">
+    <img src="{{ pin.file.url }}" alt="{{ pin.file.name }}" ">
+    <div class="btn-toolbar pull-left">
+        <div class="btn-group">
+            <a class="btn" href="{% url pin:rotate pin.id %}?angle=90">左旋</a>
+            <a class="btn" href="{% url pin:rotate pin.id %}?angle=270">右旋</a>
+            <a class="btn" href="{% url pin:delete pin.id %}">删除</a>
+        </div>
+    </div>
+    <div class="btn-toolbar pull-right">
+        <div class="btn-group">
+            <button class="btn">Prev</button>
+            <button class="btn">Next</button>
+        </div>
+    </div>
+</div>
+
+    </div>
+    <div class="span3 well">
+        <h3>{{pin.file.name}}</h3>
+        <p><strong>{{pin.album.name}}</strong></p>
+        <i>{{pin.album.user}}</i>
+        <p><small>{{pin.album.create}}</small></p>
+    </div>
+</div>
+{% endblock %}
+
