@@ -13,8 +13,11 @@ v1_api.register(AlbumResource())
 v1_api.register(PinResource())
 
 urlpatterns = patterns('',
-    url(r'^albums/', include('pins.urls', namespace='pins')),
+    url(r'^album/', include('pins.album_urls', namespace='album')),
+    url(r'^pin/(?P<pk>\d+)/', include('pins.pin_urls', namespace='pin')),
     url(r'^api/', include(v1_api.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('core.urls', namespace='core')),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

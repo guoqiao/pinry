@@ -2,16 +2,17 @@
 
 {% block nav_left %}
 <li class="{% block album_active %}{% endblock %}">
-    <a href="{% url pins:pins album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a>
+    <a href="{% url album:home album.id %}"><i class="icon-picture icon-white"></i>{{album.name}}</a>
 </li>
 {% endblock %}
 
 {% block nav_right %}
+<li><a href="{% url pin:home 1 %}"><i class="icon-download icon-white"></i>XX</a></li>
 {% if album.pin_set.all.count %}
-    <li><a href="{% url pins:download-album album.id %}" data-toggle="modal"><i class="icon-download icon-white"></i>下载</a></li>
+    <li><a href="{% url album:download album.id %}" data-toggle="modal"><i class="icon-download icon-white"></i>下载</a></li>
 {% endif %}
 {% if user.is_authenticated %}
-    <li><a href="{% url pins:upload-pin album.id %}" data-toggle="modal"><i class="icon-upload icon-white"></i>上传</a></li>
+    <li><a href="{% url album:upload album.id %}" data-toggle="modal"><i class="icon-upload icon-white"></i>上传</a></li>
 {% endif %}
 {% if user.is_authenticated and user.username == album.user.username %}
     <li><a data-toggle="modal" href="#id_delete_album" ><i class="icon-trash icon-white"></i>删除</a></li>
@@ -29,7 +30,7 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn close" data-dismiss="modal">取消</a>
-        <a href="{% url pins:delete-album album.id %}" class="btn btn-primary btn-danger">确认删除</a>
+        <a href="{% url album:delete album.id %}" class="btn btn-primary btn-danger">确认删除</a>
     </div>
 </div>
 <!-- modal-gallery is the modal dialog used for the image gallery -->

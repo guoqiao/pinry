@@ -181,3 +181,4 @@ ALBUM_ROOT = os.path.join(MEDIA_ROOT,'albums')
 
 # tastypie
 API_LIMIT_PER_PAGE = 50
+DATETIME_FORMAT = "Y-m-d H:i"

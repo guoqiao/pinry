@@ -5,12 +5,12 @@
 
 {% block title %}新建相册{% endblock %}
 
-{% block yield %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="span6 offset3" id="form">
                 <h1>新建相册</h1>
-                <form action="{% url pins:new-album %}" method="post" class="form-horizontal">
+                <form action="{% url album:new %}" method="post" class="form-horizontal">
                     {% csrf_token %}
                     {% for field in form %}
                         {% bootstrap_field field %}

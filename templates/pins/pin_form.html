@@ -3,7 +3,7 @@
 {% load upload_tags %}
 
 {% block nav_right %}
-<li><a href="{% url pins:pins album.id %}" data-toggle="modal"><i class="icon-arrow-left icon-white"></i>返回</a></li>
+<li><a href="{% url album:home album.id %}" data-toggle="modal"><i class="icon-arrow-left icon-white"></i>返回</a></li>
 {{ block.super }}
 {% endblock %}
 
