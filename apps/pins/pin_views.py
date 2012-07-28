@@ -13,6 +13,19 @@ def home(request, pk):
     }
     return render(request, 'pins/pin_home.html', ctx)
 
+def nav(request, pk):
+    pin = Pin.objects.get(pk=pk)
+    album = pin.album
+    direct = request.GET.get('direct','')
+    pins = []
+    if direct == 'prev':
+        pins = Pin.objects.filter(album=album, pk__lt=pk).reverse()
+    elif direct == 'next':
+        pins = Pin.objects.filter(album=album, pk__gt=pk)
+    if pins:
+        pk = pins[0].pk
+    return redirect('pin:home',pk=pk)
+
 @login_required
 def rotate(request, pk):
     angle = request.GET.get('angle','0')
