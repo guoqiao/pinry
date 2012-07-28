@@ -55,17 +55,10 @@ def new(request):
             a = form.save(commit=False)
             a.user = request.user
             a.save()
-            messages.success(request, '新建相册成功')
-            url = reverse('album:home', args=[a.id])
-            return HttpResponseRedirect(url)
-        else:
-            messages.error(request, 'Album did not pass validation!')
-    else:
-        form = AlbumForm()
-    context = {
-        'form': form,
-    }
-    return TemplateResponse(request, 'pins/new_album.html', context)
+            messages.success(request, u'新建相册成功')
+            return redirect('album:home', pk=a.pk)
+    messages.error(request,  u'相册已存在!')
+    return redirect('album:list')
 
 @login_required
 def upload(request, pk):
