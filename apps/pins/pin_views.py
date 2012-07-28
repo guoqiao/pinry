@@ -32,4 +32,4 @@ def delete(request,pk):
     pin = Pin.objects.get(pk=pk)
     album_id = pin.album.id
     pin.delete()
-    return redirect('pins:home', pk=album_id)
+    return redirect('album:home', pk=album_id)

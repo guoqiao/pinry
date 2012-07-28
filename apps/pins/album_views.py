@@ -56,7 +56,7 @@ def new(request):
             a.user = request.user
             a.save()
             messages.success(request, '新建相册成功')
-            url = reverse('pins:pins', args=[a.id])
+            url = reverse('album:home', args=[a.id])
             return HttpResponseRedirect(url)
         else:
             messages.error(request, 'Album did not pass validation!')
@@ -84,7 +84,7 @@ def upload(request, pk):
                 'name': pin.file.name,
                 'url': pin.file.url,
                 'thumbnail_url': pin.file.url_200x1000,
-                'delete_url': reverse('pins:delete-pin', args=[pin.pk]),
+                'delete_url': reverse('pin:delete', args=[pin.pk]),
                 'delete_type': "DELETE",
                 }]
         response = JSONResponse(data, {}, response_mimetype(request))
@@ -98,7 +98,7 @@ def upload(request, pk):
 @login_required
 def delete(request,pk):
     Album.objects.get(pk=pk).delete()
-    url = reverse('pins:albums')
+    url = reverse('album:list')
     return redirect(url)
 
 def download(request,pk):
