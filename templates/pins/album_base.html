@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block nav_right %}
-<li><a href="{% url pin:home 1 %}"><i class="icon-download icon-white"></i>XX</a></li>
 {% if album.pin_set.all.count %}
     <li><a href="{% url album:download album.id %}" data-toggle="modal"><i class="icon-download icon-white"></i>下载</a></li>
 {% endif %}
