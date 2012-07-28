@@ -41,7 +41,9 @@
             </table>
 
             {% get_comment_count for pin as comment_count %}
+            {% if comment_count %}
             <h3>{{ comment_count }} 条评论:</h3>
+            {% endif %}
             {% get_comment_list for pin as comment_list %}
             <ol>
             {% for c in comment_list %}
