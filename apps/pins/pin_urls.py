@@ -5,4 +5,5 @@ urlpatterns = patterns('pins.pin_views',
     url(r'^$', 'home', name='home'),
     url(r'^delete/$', 'delete', name='delete'),
     url(r'^rotate/$', 'rotate', name='rotate'),
+    url(r'^nav/$', 'nav', name='nav'),
 )
