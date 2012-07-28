@@ -66,4 +66,4 @@ class Pin(models.Model):
         super(Pin,self).delete()
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
