@@ -4,34 +4,56 @@
 {{block.super}}
 <div class="row-fluid">
     <div class="span9">
+        <div class="row-fluid">
+            <img src="{{ pin.file.url }}" alt="{{ pin.file.name }}">
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="row-fluid">
+            <h2>{{pin.album.name}}</h2>
+            <p><i>{{pin.album.user}}</i>, <small>{{pin.album.create}}</small></p>
+        </div>
+        <div class="row-fluid">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-info btn-large" href="{% url pin:nav pin.pk %}?direct=prev">
+                        <i class="icon-chevron-left icon-white"></i>
+                        上一张
+                    </a>
+                    <a class="btn btn-info btn-large" href="{% url pin:nav pin.pk %}?direct=next">
+                        下一张
+                        <i class="icon-chevron-right icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <div class="row-fluid">
             <div class="btn-toolbar">
                 <div class="btn-group">
-                    <a class="btn" href="{% url pin:rotate pin.id %}?angle=90">左旋</a>
-                    <a class="btn" href="{% url pin:rotate pin.id %}?angle=270">右旋</a>
-                </div>
-                <div class="btn-group">
-                    <a class="btn btn-danger" data-toggle="modal" href="#modal-delete-pin" ><i class="icon-trash icon-white"></i>删除</a>
-                </div>
-                <div class="btn-group pull-right">
-                    <a class="btn btn-info" href="{% url pin:nav pin.pk %}?direct=prev"><i class="icon-chevron-left icon-white"></i>上一张</a>
-                    <a class="btn btn-info" href="{% url pin:nav pin.pk %}?direct=next">下一张<i class="icon-chevron-right icon-white"></i></a>
+                    <a class="btn btn-warning" href="{% url pin:rotate pin.id %}?angle=90">
+                        <i class="icon-chevron-left icon-white"></i>
+                        左旋
+                    </a>
+                    <a class="btn btn-warning" href="{% url pin:rotate pin.id %}?angle=270">
+                        右旋
+                        <i class="icon-chevron-right icon-white"></i>
+                    </a>
                 </div>
             </div>
         </div>
+        {% if user.is_authenticated and user.username == album.user.username %}
         <div class="row-fluid">
-            <img src="{{ pin.file.url }}" alt="{{ pin.file.name }}">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <a class="btn btn-danger btn-small" data-toggle="modal" href="#modal-delete-pin" ><i class="icon-trash icon-white"></i>删除</a>
+                </div>
+            </div>
         </div>
-
+        {% endif %}
     </div>
 
-    <div class="span3 well">
-        <h3>{{pin.file.name}}</h3>
-        <p><strong>{{pin.album.name}}</strong></p>
-        <i>{{pin.album.user}}</i>
-        <p><small>{{pin.album.create}}</small></p>
-    </div>
 </div>
 
 <div class="modal hide" id="modal-delete-pin">
