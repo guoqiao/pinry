@@ -26,18 +26,16 @@ def nav(request, pk):
         pk = pins[0].pk
     return redirect('pin:home',pk=pk)
 
-@login_required
 def rotate(request, pk):
     angle = request.GET.get('angle','0')
     angle = int(angle)
-    if angle not in (90,270):
-        return redirect("pin:home", pk=pk)
-    pin = Pin.objects.get(pk=pk)
-    import Image
-    path = pin.path()
-    img0 = Image.open(path)
-    img1 = img0.rotate(angle)
-    img1.save(path)
+    if angle in (90,270):
+        pin = Pin.objects.get(pk=pk)
+        import Image
+        path = pin.path()
+        img0 = Image.open(path)
+        img1 = img0.rotate(angle)
+        img1.save(path)
     return redirect("pin:home", pk=pk)
 
 @login_required
