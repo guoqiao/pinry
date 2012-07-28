@@ -1,4 +1,5 @@
 {% extends 'pins/album_base.html' %}
+{% load comments %}
 
 {% block content %}
 {{block.super}}
@@ -6,6 +7,42 @@
     <div class="span9">
         <div class="row-fluid">
             <img src="{{ pin.file.url }}" alt="{{ pin.file.name }}">
+        </div>
+        <div>
+            {% csrf_token %}
+            {% get_comment_form for pin as form %}
+            <table class="table">
+                <form class="form form-horizontal" action="{% comment_form_target %}" method="post">
+                    {% csrf_token %}
+                    <tbody>
+                            <tr>
+                            <th><label for="id_comment">评论:</label></th>
+                            <td><textarea id="id_comment" rows="10" cols="100" name="comment"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th><label for="id_honeypot">垃圾防范:</label></th>
+                            <td>
+                                <input type="text" name="honeypot" id="id_honeypot"><input type="hidden" name="content_type" value="pins.pin" id="id_content_type">
+                                <input type="hidden" name="object_pk" value="60" id="id_object_pk">
+                                <input type="hidden" name="timestamp" value="1343482826" id="id_timestamp">
+                                <input type="hidden" name="security_hash" value="5454795582274d8bcdc6806e5de2d11522d96c4e" id="id_security_hash">
+                                <label for="id_honeypot">如果你在该字段中输入任何内容，那么你的评论就会被视为垃圾评论。
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td colspan="2">
+                                <input class="btn-primary btn-large" type="submit" name="submit" value="提交">
+                                <input type="hidden" name="next" value="{% url pin:home pin.pk %}">
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+            </table>
+
+            {% get_comment_count for pin as comment_count %}
+            <p>{{ comment_count }} 条评论:</p>
+            {% render_comment_list for pin %}
         </div>
     </div>
 

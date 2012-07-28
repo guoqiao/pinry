@@ -137,3 +137,8 @@ a:hover, a:focus, a:active { color: #0c4c9d; }
         .form-actions {
             margin-bottom: 0;
         }
+
+#id_comment {
+    width: auto;
+}
+
