@@ -4,9 +4,9 @@
 
 {% block content %}
 {{ block.super }}
-<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
+<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery2">
     {% for pin in album.pin_set.all %}
-    <a rel="gallery" href="{{ pin.file.url }}" title="{{ pin.file.name }}">
+    <a rel="gallery" href="{% url pin:home pin.pk %}" title="{{ pin.file.name }}">
         <img src="{{ pin.file.url_200x1000 }}" alt="" width=200px />
     </a>
     {% endfor %}
