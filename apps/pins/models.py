@@ -49,6 +49,9 @@ class Album(models.Model):
         else:
             return os.path.join(settings.STATIC_URL, 'album.png')
 
+    def comments(self):
+        return Comment.objects.filter(pin__album=self)
+
 def pin_upload_to(instance,filename):
     # the disk path relative to media root
     return os.path.join(ALBUMS_DIR,str(instance.album.id),filename)
@@ -80,7 +83,7 @@ class Comment((models.Model)):
     is_removed  = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ('submit_at',)
+        ordering = ('-submit_at',)
 
     def __unicode__(self):
         return "%s: %s..." % (self.name, self.comment[:50])

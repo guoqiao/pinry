@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from django.template.response import TemplateResponse
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils import simplejson
@@ -9,7 +9,7 @@ from django.shortcuts import render,redirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
-from .models import Album,Pin
+from .models import Album,Pin,Comment
 from .forms import PinForm,AlbumForm
 
 def response_mimetype(request):
@@ -46,6 +46,10 @@ def home(request, pk):
         'per_page': settings.API_LIMIT_PER_PAGE,
     }
     return TemplateResponse(request, 'pins/pins.html', context)
+
+def comments(request):
+    objs = Comment.objects.all()[:99]
+    return render(request,'pins/comments.html',{'objs':objs})
 
 @login_required
 def new(request):

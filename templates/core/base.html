@@ -36,6 +36,7 @@
                         <!-- .nav, .navbar-search, .navbar-form, etc -->
                         <ul class="nav">
                             <li class="{% block home_active %}{% endblock %}"><a href="{% url core:home %}"><i class="icon-home icon-white"></i>首页</a></li>
+                            <li class="{% block comment_active %}{% endblock %}"><a href="{% url album:comments %}"><i class="icon-comment icon-white"></i>评论</a></li>
                             {% block nav_left %}{% endblock %}
                         </ul>
                         <ul class="nav pull-right">

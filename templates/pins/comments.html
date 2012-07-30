@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block comment_active %}active{% endblock %}
+{% block content %}
+{{ block.super }}
+<table class="table-striped">
+    <tbody>
+    {% for c in objs %}
+    <tr>
+        <th>
+            <a href="{% url pin:home c.pin.pk %}">
+                <img src="{{ c.pin.file.url_200x1000 }}" alt="{{ c.pin.file.name }}" />
+            </a>
+        </th>
+        <td>
+        <span>{{c.user}} 发表于 {{c.submit_at}}</span>
+        <pre>{{c.comment}}</pre>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -6,7 +6,7 @@
 <ul id="id_albums" class="unstyled">
     {% for a in objs %}
     <li class="album">
-        <p><b>{{a.name}}</b><small>({{a.pin_set.all.count}}张)</small></p>
+    <p><b>{{a.name}}</b><small>({{a.pin_set.all.count}}张照片, {{a.comments.count}}条评论)</small></p>
         <a rel="pins" href="{{a.id}}"><img src="{{ a.face }}" width="200" height="200"></a>
         <p>by <b>{{a.user}}</b></p>
         <p>at <i>{{a.create}}</i></p>
