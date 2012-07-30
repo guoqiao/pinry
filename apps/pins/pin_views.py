@@ -2,15 +2,27 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 
-from pins.models import Pin
+from pins.models import Pin,Comment
+from .forms import CommentForm
 
 def home(request, pk):
     pin = Pin.objects.get(pk=pk)
     album = pin.album
+    if request.method == 'GET':
+        form = CommentForm()
+    else:
+        obj = Comment(user=request.user, pin=pin)
+        form = CommentForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return redirect('pin:home', pk=pk)
+
     ctx = {
-        'album':album,
-        'pin':pin,
+        'album': album,
+        'pin': pin,
+        'form': form,
     }
+
     return render(request, 'pins/pin_home.html', ctx)
 
 def nav(request, pk):

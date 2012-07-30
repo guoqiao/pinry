@@ -11,11 +11,10 @@
         <div class="row-fluid">
             {% if user.is_authenticated %}
             {% csrf_token %}
-            {% get_comment_form for pin as form %}
             <table>
-                <form class="" action="{% comment_form_target %}" method="post">
+                <form class="well form-inline" action="" method="post">
                     {% csrf_token %}
-                    {{ form }}
+                    {{ form.as_p }}
                     <tr>
                         <th></th>
                         <td colspan="2">
@@ -26,18 +25,16 @@
                 </form>
             </table>
             {% else %}
-            <p>登录后发表评论</p>
+            <p><a href="{% url core:login %}?next={% url pin:home pin.pk %}">登录</a>后发表评论</p>
             {% endif %}
 
-            {% get_comment_count for pin as comment_count %}
-            {% if comment_count %}
-            <h3>{{ comment_count }} 条评论:</h3>
+            {% if pin.comment_set.all.count %}
+            <h3>{{ pin.comment_set.all.count }} 条评论:</h3>
             {% endif %}
-            {% get_comment_list for pin as comment_list %}
             <ol class="comment">
-            {% for c in comment_list %}
+            {% for c in pin.comment_set.all %}
                 <li>
-                <span>{{c.user}} 发表于 {{c.submit_date}}</span>
+                <span>{{c.user}} 发表于 {{c.submit_at}}</span>
                 <pre>{{c.comment}}</pre>
                 </li>
             {% endfor %}

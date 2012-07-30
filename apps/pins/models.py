@@ -4,7 +4,10 @@ import shutil
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 from thumbs import ImageWithThumbsField
+
+COMMENT_MAX_LENGTH = getattr(settings,'COMMENT_MAX_LENGTH',3000)
 
 ALBUMS_DIR = 'albums'
 
@@ -67,3 +70,18 @@ class Pin(models.Model):
 
     class Meta:
         ordering = ['id']
+
+
+class Comment((models.Model)):
+    comment = models.TextField(u'评论', max_length=COMMENT_MAX_LENGTH)
+    user        = models.ForeignKey(User)
+    pin         = models.ForeignKey(Pin)
+    submit_at = models.DateTimeField(auto_now=True)
+    is_removed  = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('submit_at',)
+
+    def __unicode__(self):
+        return "%s: %s..." % (self.name, self.comment[:50])
+
