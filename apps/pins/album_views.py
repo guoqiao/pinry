@@ -35,7 +35,8 @@ def list(request):
 
 def home(request, pk):
     album = Album.objects.get(pk=pk)
-    if not album.pin_set.all():
+    pins = album.pin_set.all()
+    if not pins:
         x =  '相册中还没有照片,登录后可以批量上传哦~'
         if request.user.is_authenticated():
             x = '相册中还没有照片,试试批量上传吧~'
@@ -43,7 +44,6 @@ def home(request, pk):
 
     context = {
         'album':album,
-        'per_page': settings.API_LIMIT_PER_PAGE,
     }
     return TemplateResponse(request, 'pins/pins.html', context)
 
