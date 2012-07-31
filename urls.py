@@ -13,8 +13,8 @@ v1_api.register(AlbumResource())
 v1_api.register(PinResource())
 
 urlpatterns = patterns('',
-    url(r'^album/', include('pins.album_urls', namespace='album')),
-    url(r'^pin/(?P<pk>\d+)/', include('pins.pin_urls', namespace='pin')),
+    url(r'^albums/', include('pins.album_urls', namespace='album')),
+    url(r'^pins/(?P<pk>\d+)/', include('pins.pin_urls', namespace='pin')),
     url(r'^api/', include(v1_api.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django.contrib.comments.urls')),
