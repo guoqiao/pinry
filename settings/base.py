@@ -152,7 +152,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'django.contrib.sites',
-    'django.contrib.comments',
     'django_wsgiserver',
     'core',
     'pins',
