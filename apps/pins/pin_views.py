@@ -43,11 +43,7 @@ def rotate(request, pk):
     angle = int(angle)
     if angle in (90,270):
         pin = Pin.objects.get(pk=pk)
-        import Image
-        path = pin.path()
-        img0 = Image.open(path)
-        img1 = img0.rotate(angle)
-        img1.save(path)
+        pin.rotate(angle)
     return redirect("pin:home", pk=pk)
 
 @login_required
