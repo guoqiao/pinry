@@ -70,6 +70,10 @@ class Pin(models.Model):
     def __unicode__(self):
         return self.file.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('pin:home', [str(self.pk)])
+
     def path(self):
         return os.path.join(settings.MEDIA_ROOT,self.file.name)
 
