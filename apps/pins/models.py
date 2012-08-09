@@ -24,7 +24,7 @@ class Album(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('recent-pins', [self.id])
+        return ('album:home', [str(self.pk)])
 
     def path(self):
         return os.path.join(settings.MEDIA_ROOT, ALBUMS_DIR, str(self.id))
