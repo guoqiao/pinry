@@ -1,1 +1,5 @@
 from ldap_settings import *
+
+MEDIA_URL  = 'http://10.10.20.223/pinry_media/'
+STATIC_URL = 'http://10.10.20.223/pinry_static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
